@@ -16,7 +16,7 @@
     <properties>
         <jersey-version>1.17.1</jersey-version>
         <distributeme.version>2.0.0</distributeme.version>
-        <essential.version>2.2.6</essential.version>
+        <essential.version>2.2.7-SNAPSHOT</essential.version>
     </properties>
 
     <scm>
