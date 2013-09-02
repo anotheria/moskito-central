@@ -1,16 +1,16 @@
 package org.moskito.central.storage.fs;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
+import org.configureme.ConfigurationManager;
 import org.moskito.central.Snapshot;
 import org.moskito.central.storage.SnapshotSerializer;
 import org.moskito.central.storage.Storage;
 import org.moskito.central.storage.StorageUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import org.apache.log4j.Logger;
-import org.configureme.ConfigurationManager;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 /**
  * File system storage implementation.
@@ -33,7 +33,7 @@ public class FileSystemStorage implements Storage {
 	/**
 	 * Logger instance.
 	 */
-	private static Logger log = Logger.getLogger(FileSystemStorage.class);
+	private static Logger log = LoggerFactory.getLogger(FileSystemStorage.class);
 
 	/**
 	 * Default constructor.

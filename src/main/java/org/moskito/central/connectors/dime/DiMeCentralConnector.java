@@ -1,16 +1,16 @@
 package org.moskito.central.connectors.dime;
 
+import net.anotheria.util.IdCodeGenerator;
+import org.configureme.ConfigurationManager;
+import org.distributeme.core.ServiceDescriptor;
+import org.distributeme.core.ServiceDescriptor.Protocol;
 import org.moskito.central.Snapshot;
 import org.moskito.central.connectors.AbstractCentralConnector;
 import org.moskito.central.endpoints.rmi.RMIEndpointService;
 import org.moskito.central.endpoints.rmi.RMIEndpointServiceException;
 import org.moskito.central.endpoints.rmi.generated.RemoteRMIEndpointServiceStub;
-import net.anotheria.util.IdCodeGenerator;
-
-import org.apache.log4j.Logger;
-import org.configureme.ConfigurationManager;
-import org.distributeme.core.ServiceDescriptor;
-import org.distributeme.core.ServiceDescriptor.Protocol;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Moskito connector for RMI processing of incoming snapshots.
@@ -23,7 +23,7 @@ public class DiMeCentralConnector extends AbstractCentralConnector {
 	/**
 	 * Logger instance.
 	 */
-	private final static Logger log = Logger.getLogger(DiMeCentralConnector.class);
+	private final static Logger log = LoggerFactory.getLogger(DiMeCentralConnector.class);
 
 	/**
 	 * {@link RMIEndpointService} service instance.
@@ -46,7 +46,7 @@ public class DiMeCentralConnector extends AbstractCentralConnector {
 	public void setConfigurationName(String configurationName) {
 		config = new DiMeCentralConnectorConfig();
 		ConfigurationManager.INSTANCE.configureAs(config, configurationName);
-		log.debug(config);
+		log.debug("Config: "+config);
 		
 		Protocol aProtocol = Protocol.RMI;
 		String aServiceId = RMIEndpointService.class.getName().replaceAll("[.]", "_");

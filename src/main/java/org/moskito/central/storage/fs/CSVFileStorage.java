@@ -1,11 +1,12 @@
 package org.moskito.central.storage.fs;
 
+import org.configureme.ConfigurationManager;
 import org.moskito.central.Snapshot;
 import org.moskito.central.storage.Storage;
 import org.moskito.central.storage.StorageUtils;
 import org.moskito.central.storage.serializer.CSVSerializer;
-import org.apache.log4j.Logger;
-import org.configureme.ConfigurationManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -28,7 +29,7 @@ public class CSVFileStorage implements Storage{
 	/**
 	 * Logger.
 	 */
-	private static Logger log = Logger.getLogger(CSVFileStorage.class);
+	private static Logger log = LoggerFactory.getLogger(CSVFileStorage.class);
 
 	/**
 	 * Serializer instance.

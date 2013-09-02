@@ -1,23 +1,22 @@
 package org.moskito.central.storage.psql;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
-import javax.persistence.PersistenceException;
-
+import org.configureme.ConfigurationManager;
 import org.moskito.central.Snapshot;
 import org.moskito.central.storage.Storage;
 import org.moskito.central.storage.fs.FileSystemStorage;
 import org.moskito.central.storage.psql.entities.JSONStatisticsEntity;
 import org.moskito.central.storage.psql.entities.SnapshotEntity;
 import org.moskito.central.storage.psql.entities.StatisticsEntity;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import org.apache.log4j.Logger;
-import org.configureme.ConfigurationManager;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
+import javax.persistence.PersistenceException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * PSQL snapshot storage implementation.
@@ -35,7 +34,7 @@ public class PSQLStorage implements Storage {
 	/**
 	 * Logger instance.
 	 */
-	private static Logger log = Logger.getLogger(FileSystemStorage.class);
+	private static Logger log = LoggerFactory.getLogger(FileSystemStorage.class);
 
 	/**
 	 * Storage config.

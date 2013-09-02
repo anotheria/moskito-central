@@ -1,10 +1,11 @@
 package org.moskito.central;
 
+import org.configureme.ConfigurationManager;
 import org.moskito.central.config.Configuration;
 import org.moskito.central.config.StorageConfigEntry;
 import org.moskito.central.storage.Storage;
-import org.apache.log4j.Logger;
-import org.configureme.ConfigurationManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -36,7 +37,7 @@ public class Central {
 	/**
 	 * Log.
 	 */
-	private static Logger log = Logger.getLogger(Central.class);
+	private static Logger log = LoggerFactory.getLogger(Central.class);
 
 	/**
 	 * Returns the singleton instance.

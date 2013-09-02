@@ -1,19 +1,19 @@
 package org.moskito.central.connectors;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.moskito.central.CentralConstants;
-import org.moskito.central.Snapshot;
-import org.moskito.central.SnapshotMetaData;
 import net.anotheria.moskito.core.plugins.AbstractMoskitoPlugin;
 import net.anotheria.moskito.core.snapshot.ProducerSnapshot;
 import net.anotheria.moskito.core.snapshot.SnapshotConsumer;
 import net.anotheria.moskito.core.snapshot.SnapshotRepository;
 import net.anotheria.moskito.core.snapshot.StatSnapshot;
 import net.anotheria.net.util.NetUtils;
+import org.moskito.central.CentralConstants;
+import org.moskito.central.Snapshot;
+import org.moskito.central.SnapshotMetaData;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import org.apache.log4j.Logger;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Parent class for all central connectors. Describes full logic.
@@ -36,7 +36,7 @@ public abstract class AbstractCentralConnector extends AbstractMoskitoPlugin imp
 	/**
 	 * Logger instance.
 	 */
-	private final static Logger log = Logger.getLogger(AbstractCentralConnector.class);
+	private final static Logger log = LoggerFactory.getLogger(AbstractCentralConnector.class);
 
 	/**
 	 * Default constructor.
