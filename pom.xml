@@ -306,8 +306,8 @@
                     <webXml>src/main/resources/web.xml</webXml>
                     <webResources>
                         <resource>
-                            this is relative to the pom.xml directory
-                            <directory>java</directory>
+                            <!-- this is relative to the pom.xml directory -->
+                            <directory>src/main/java</directory>
                             <includes>
                                 <include>**/*.jsp</include>
                             </includes>
