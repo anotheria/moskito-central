@@ -306,8 +306,8 @@
                     <webXml>src/main/resources/web.xml</webXml>
                     <webResources>
                         <resource>
-                            this is relative to the pom.xml directory
-                            <directory>java</directory>
+                            <!-- this is relative to the pom.xml directory -->
+                            <directory>src/main/java</directory>
                             <includes>
                                 <include>**/*.jsp</include>
                             </includes>
@@ -352,6 +352,28 @@
                                         </transformer>
                                     </transformers>
                                 </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>build-war</id>
+            <build>
+                <plugins>
+
+                    <!-- build war-archive -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-war-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>war</goal>
+                                </goals>
                             </execution>
                         </executions>
                     </plugin>
