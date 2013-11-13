@@ -12,7 +12,7 @@
     <version>1.1-SNAPSHOT</version>
     <name>moskito central snapshot storage</name>
 
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
     <properties>
         <jersey-version>1.17.1</jersey-version>
         <distributeme.version>2.1.0</distributeme.version>
@@ -99,7 +99,74 @@
                 <artifactId>hsqldb</artifactId>
                 <version>2.2.9</version>
             </dependency>
-
+			
+			<dependency>
+	            <groupId>net.anotheria</groupId>
+	            <artifactId>configureme</artifactId>
+	            <version>2.3.0</version>
+	        </dependency>
+	        
+	        <dependency>
+	            <groupId>com.google.code.gson</groupId>
+	            <artifactId>gson</artifactId>
+	            <version>2.2.4</version>
+	        </dependency>
+	        
+	        <dependency>
+	            <groupId>net.anotheria</groupId>
+	            <artifactId>ano-prise</artifactId>
+	            <version>2.1.0</version>
+	        </dependency>
+	        
+	        <dependency>
+	            <groupId>net.anotheria</groupId>
+	            <artifactId>ano-net</artifactId>
+	            <version>2.1.0</version>
+	        </dependency>
+	        <dependency>
+	            <groupId>net.anotheria</groupId>
+	            <artifactId>moskito-core</artifactId>
+	            <version>${essential.version}</version>
+	        </dependency>
+	        <dependency>
+	            <groupId>net.anotheria</groupId>
+	            <artifactId>moskito-sql</artifactId>
+	            <version>${essential.version}</version>
+	        </dependency>
+	        <dependency>
+	            <groupId>net.anotheria</groupId>
+	            <artifactId>moskito-web</artifactId>
+	            <version>${essential.version}</version>
+	        </dependency>
+	        
+	        <dependency>
+	            <groupId>net.anotheria</groupId>
+	            <artifactId>ano-util</artifactId>
+	            <version>2.1.0</version>
+	            <exclusions>
+	                <exclusion>
+	                    <groupId>blowfish</groupId>
+	                    <artifactId>blowfish</artifactId>
+	                </exclusion>
+	            </exclusions>
+	        </dependency>
+	        
+	        <dependency>
+	            <groupId>net.anotheria</groupId>
+	            <artifactId>distributeme-core</artifactId>
+	            <version>${distributeme.version}</version>
+	        </dependency>
+	        <dependency>
+	            <groupId>net.anotheria</groupId>
+	            <artifactId>distributeme-support</artifactId>
+	            <version>${distributeme.version}</version>
+	        </dependency>
+	        <dependency>
+	            <groupId>net.anotheria</groupId>
+	            <artifactId>distributeme-agents</artifactId>
+	            <version>${distributeme.version}</version>
+	        </dependency>
+			
         </dependencies>
     </dependencyManagement>
     <dependencies>
@@ -107,48 +174,11 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
         </dependency>
-        <dependency>
-            <groupId>net.anotheria</groupId>
-            <artifactId>ano-util</artifactId>
-            <version>2.1.0</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>blowfish</groupId>
-                    <artifactId>blowfish</artifactId>
-                </exclusion>
-            </exclusions>
-
-        </dependency>
-        <dependency>
-            <groupId>net.anotheria</groupId>
-            <artifactId>ano-prise</artifactId>
-            <version>2.1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>net.anotheria</groupId>
-            <artifactId>ano-net</artifactId>
-            <version>2.1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>net.anotheria</groupId>
-            <artifactId>moskito-core</artifactId>
-            <version>${essential.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>net.anotheria</groupId>
-            <artifactId>moskito-sql</artifactId>
-            <version>${essential.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>net.anotheria</groupId>
-            <artifactId>moskito-web</artifactId>
-            <version>${essential.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>net.anotheria</groupId>
-            <artifactId>configureme</artifactId>
-            <version>2.3.0</version>
-        </dependency>
+        
+        <!-- 
+        
+        
+        
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
@@ -183,21 +213,7 @@
             <artifactId>jsr311-api</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>net.anotheria</groupId>
-            <artifactId>distributeme-core</artifactId>
-            <version>${distributeme.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>net.anotheria</groupId>
-            <artifactId>distributeme-support</artifactId>
-            <version>${distributeme.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>net.anotheria</groupId>
-            <artifactId>distributeme-agents</artifactId>
-            <version>${distributeme.version}</version>
-        </dependency>
+        
 
         <dependency>
             <groupId>org.hibernate.javax.persistence</groupId>
@@ -220,8 +236,10 @@
             <groupId>org.hsqldb</groupId>
             <artifactId>hsqldb</artifactId>
         </dependency>
-        <!-- <dependency> <groupId>com.owlike</groupId> <artifactId>genson</artifactId>
-            <version>0.94</version> </dependency> -->
+        <dependency> <groupId>com.owlike</groupId> <artifactId>genson</artifactId>
+            <version>0.94</version> </dependency>
+            
+         -->
     </dependencies>
 
     <build>
@@ -245,6 +263,7 @@
 
             <plugin>
                 <artifactId>maven-clean-plugin</artifactId>
+                <version>2.4</version>
                 <configuration>
                     <filesets>
                         <fileset>
@@ -255,7 +274,7 @@
                 </configuration>
             </plugin>
 
-            <plugin>
+            <!-- <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>apt-maven-plugin</artifactId>
                 <dependencies>
@@ -291,9 +310,9 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin> -->
 
-            <plugin>
+            <!-- <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>2.3</version>
@@ -306,7 +325,11 @@
                     <webXml>src/main/resources/web.xml</webXml>
                     <webResources>
                         <resource>
+<<<<<<< Updated upstream
                             <!-- this is relative to the pom.xml directory -->
+=======
+                            this is relative to the pom.xml directory
+>>>>>>> Stashed changes
                             <directory>src/main/java</directory>
                             <includes>
                                 <include>**/*.jsp</include>
@@ -314,19 +337,17 @@
                         </resource>
                     </webResources>
                 </configuration>
-            </plugin>
+            </plugin> -->
 
 
         </plugins>
     </build>
 
-    <profiles>
+    <!-- <profiles>
         <profile>
             <id>jar-with-service</id>
             <build>
                 <plugins>
-
-                    <!-- build executable jar with main class -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-shade-plugin</artifactId>
@@ -364,7 +385,10 @@
             <build>
                 <plugins>
 
+<<<<<<< Updated upstream
                     <!-- build war-archive -->
+=======
+>>>>>>> Stashed changes
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-war-plugin</artifactId>
@@ -381,6 +405,17 @@
             </build>
         </profile>
 
+<<<<<<< Updated upstream
     </profiles>
+=======
+    </profiles> -->
+    
+    <modules>
+    	<module>moskito-central-server</module>
+		<module>moskito-central-core</module>
+		<module>moskito-central-storages</module>
+		<module>moskito-central-connectors</module>
+    </modules>
+>>>>>>> Stashed changes
 
 </project>

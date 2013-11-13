@@ -7,3 +7,5 @@ target
 *.ear
 .idea
 .settings
+*.classpath
+*.project

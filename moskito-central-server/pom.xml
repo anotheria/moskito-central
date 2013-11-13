@@ -1,0 +1,26 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<parent>
+		<groupId>org.moskito</groupId>
+		<artifactId>moskito-central</artifactId>
+		<version>1.1-SNAPSHOT</version>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.moskito</groupId>
+	<artifactId>moskito-central-server</artifactId>
+	<version>1.1-SNAPSHOT</version>
+	<name>moskito central server</name>
+
+
+	<description>storage implementations which needs dependencies to jdbc and so on. in the future we could split that up too, but i wouldn't just now. </description>
+
+
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>moskito-central-dime-server</module>
+		<module>moskito-central-rest-webapp</module>
+	</modules>
+</project>
