@@ -1,16 +1,17 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>org.moskito</groupId>
-    <artifactId>moskito-central</artifactId>
-    <version>1.1-SNAPSHOT</version>
-  </parent>
-  <artifactId>moskito-central-connectors</artifactId>
-  <packaging>pom</packaging>
-  <modules>
-  	<module>moskito-central-connectors-common</module>
-  	<module>moskito-central-rest-connector</module>
-  	<module>moskito-central-distributeme-connector</module>
-  	<module>moskito-central-embedded-connector</module>
-  </modules>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.moskito</groupId>
+		<artifactId>moskito-central</artifactId>
+		<version>1.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>moskito-central-connectors</artifactId>
+	<packaging>pom</packaging>
+	<modules>
+		<module>moskito-central-connectors-common</module>
+		<module>moskito-central-rest-connector</module>
+		<module>moskito-central-distributeme-connector</module>
+		<module>moskito-central-embedded-connector</module>
+	</modules>
 </project>

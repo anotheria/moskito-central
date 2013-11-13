@@ -6,7 +6,10 @@
 		<artifactId>moskito-central-connectors</artifactId>
 		<version>1.1-SNAPSHOT</version>
 	</parent>
+	
+	<groupId>org.moskito</groupId>
 	<artifactId>moskito-central-distributeme-connector</artifactId>
+	
 	<dependencies>
 		<dependency>
 			<groupId>net.anotheria</groupId>
@@ -30,11 +33,6 @@
 		<dependency>
 			<groupId>net.anotheria</groupId>
 			<artifactId>distributeme-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.moskito</groupId>
-			<artifactId>moskito-central-dime-server</artifactId>
-			<version>${project.version}</version>
 		</dependency>
 	</dependencies>
 </project>
