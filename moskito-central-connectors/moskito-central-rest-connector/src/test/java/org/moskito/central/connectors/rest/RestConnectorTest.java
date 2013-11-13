@@ -4,10 +4,10 @@ import java.util.HashMap;
 
 import javax.ws.rs.core.MediaType;
 
+import org.junit.Ignore;
+import org.junit.Test;
 import org.moskito.central.Snapshot;
 import org.moskito.central.SnapshotMetaData;
-
-import org.junit.Test;
 
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
@@ -21,6 +21,7 @@ import com.sun.jersey.test.framework.spi.client.ClientFactory;
  * @author dagafonov
  * 
  */
+@Ignore
 public class RestConnectorTest extends JerseyTest {
 
 	public RestConnectorTest() {
@@ -65,6 +66,7 @@ public class RestConnectorTest extends JerseyTest {
 //	}
 
 	@Test
+	@Ignore
 	public void testAddSnapshot() throws InterruptedException {
 
 		WebResource webResource = resource();
