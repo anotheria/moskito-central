@@ -15,7 +15,7 @@ import java.util.concurrent.ConcurrentMap;
 
 /**
  * OpenTSDB helper.
- * 
+ *
  * @author esmakula
  * @since 10.10.13
  */
@@ -73,13 +73,15 @@ public class OpenTSDBHelper {
 			Number value;
             String valueString = data.get(s);
             if (StringUtils.isEmpty(valueString)){
-                log.info(String.format("Skipped, empty value for stat %s.%s", stat,s));
+                log.info(String.format("Skipped, empty value for stat %s.%s.%s",
+                        snapshot.getMetaData().getProducerId(), stat, s));
                 continue;
             }
             try{
                 value = nf.parse(valueString);
             } catch (ParseException e){
-                log.info(String.format("Skipped, can't parse value %s for stat %s.%s", valueString, stat, s));
+                log.info(String.format("Skipped, can't parse value %s for stat %s.%s.%s",
+                        valueString, snapshot.getMetaData().getProducerId(), stat, s));
                 continue;
             }
             OpenTSDBMetric metric = new OpenTSDBMetric();

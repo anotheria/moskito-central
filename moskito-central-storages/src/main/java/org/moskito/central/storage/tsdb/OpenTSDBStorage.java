@@ -25,14 +25,19 @@ import java.util.Set;
 public class OpenTSDBStorage implements Storage {
 
 	/**
-	 * Storage config.
-	 */
-	private OpenTSDBStorageConfig config;
-
-	/**
 	 * Logger instance.
 	 */
 	private static Logger log = LoggerFactory.getLogger(OpenTSDBStorage.class);
+
+    /**
+     * Status success codes.
+     */
+    private final static int[] SUCCESS_CODES = {200, 204};
+
+	/**
+	 * Storage config.
+	 */
+	private OpenTSDBStorageConfig config;
 
 	/**
 	 * Default constructor.
@@ -83,11 +88,12 @@ public class OpenTSDBStorage implements Storage {
             httpPost.setEntity(entity);
             HttpClient client = HttpClients.createDefault();
             HttpResponse response = client.execute(httpPost);
-            if (response.getStatusLine().getStatusCode() != 200 || response.getStatusLine().getStatusCode() != 204){
-                log.error("TSDB storage: failed to process snapshot", response);
+            if (SUCCESS_CODES[0] != response.getStatusLine().getStatusCode() &&
+                    SUCCESS_CODES[1] != response.getStatusLine().getStatusCode()){
+                log.error("TSDB storage: failed to process snapshot: " + response.toString());
             }
         } catch (Exception e) {
-            log.error("TSDB storage: failed to process snapshot", e.getMessage());
+            log.error("TSDB storage: failed to process snapshot: " + e.getMessage());
         }
 
 
