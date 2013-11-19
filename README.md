@@ -1,33 +1,54 @@
-# Definition
+# What is MoSKito-Central?
 
-MoSKito-Central is a part of [MoSKito Monitoring System](http://moskito.org) that deals with data storing.
+**MoSKito-Central is the data warehouse for [MoSKito Monitoring system](http://moskito.org).**
 
-MoSKito-Central is the centralised storage server for keeping performance data, collected by MoSKito-Core.
+It stores the performance data, collected by [MoSKito-Core](https://github.com/anotheria/moskito/tree/master/moskito-core).
 
-Due to its architectural peculiarities, MoSKito-Core does not actually store data, keeping only the values, obtained within the last monitoring interval. To keep the data (in application memory, filesystem or database) for later processing, you will need MoSKito-Central.
+## Why do I need it?
 
-The image below shows how MoSKito-Central works.
+By design, MoSKito-Core does not actually store data. It keeps nothing but the values, obtained within the last monitoring interval. 
 
-![image](https://confluence.opensource.anotheria.net/download/attachments/25100442/moskito-central_connectors.png?version=1&modificationDate=1378394282912&api=v2)
+To store data (in application memory, filesystem or database) for later processing, you will need MoSKito-Central.
 
-# Features
+## How does it work?
 
-MoSKito-Central... 
+<img src="https://confluence.opensource.anotheria.net/download/attachments/25100442/moskito-central_connectors.png" width="500">
 
-* is a **centralised data warehouse** that keeps the entire performance info of your web app, as long as you wish. [Read more...](https://confluence.opensource.anotheria.net/display/MSK/MoSKito-Central+Overview#MoSKito-CentralOverview-archive)
-* **traces** every byte of **data flow between application nodes**, monitoring every system call in your application. [Read more...](https://confluence.opensource.anotheria.net/display/MSK/MoSKito-Central+Overview#MoSKito-CentralOverview-tracing)
-* guarantees **data security**, since all the info is stored locally, with no 3rd party or cloud solutions involved. [Read more...](http://)
-* uses **multiple data transfer protocols**: RMI and HTTP come 'out-of-the-box', connectors for other protocols are easily configured. [Read more...](https://confluence.opensource.anotheria.net/display/MSK/MoSKito-Central+Overview#MoSKito-CentralOverview-transfer)
-* gives you an absolute **flexibility in data storage**, using either application memory, filesystem (JSON, XML, CSV or any other file format) or database (SQL or non-SQL). [Read more...](https://confluence.opensource.anotheria.net/display/MSK/MoSKito-Central+Overview#MoSKito-CentralOverview-storage)
-*  works in **embedded or standalone** (separate application) **modes**, depending on the size and complexity of your app. [Read more...](https://confluence.opensource.anotheria.net/display/MSK/MoSKito-Central+Overview#MoSKito-CentralOverview-modes)
+Read more about [the way it works](https://confluence.opensource.anotheria.net/display/MSK/MoSKito-Central+Overview#MoSKito-CentralOverview-howitworks) or [communication between MoSKito-Core and MoSKito-Central...](https://confluence.opensource.anotheria.net/display/MSK/Core+-+Central+Communication)
 
-#Links for more info:
+# Why is it good?
 
-MoSKito-Central @ [moskito.org](http://www.moskito.org/moskito-central.html)
+**Centralised data warehouse**: stores the entire performance info of your application, as long as you wish.
 
-[Documentation home](https://confluence.opensource.anotheria.net/display/MSK/MoSKito-Central)
+**Traces data flow between application nodes**, monitoring every system call.
 
-[Detailed Overview](https://confluence.opensource.anotheria.net/display/MSK/MoSKito-Central+Overview)
+**Data privacy**: keeps collected data locally, with no 3rd party resources involved.
 
-Setup for [Embedded](https://confluence.opensource.anotheria.net/display/MSK/Set+Up+Moskito-Central+in+Embedded+Mode) and [Remote](https://confluence.opensource.anotheria.net/display/MSK/Setting+Up+MoSKito-Central+in+Remote+Mode) modes.
+**Multiple data transfer protocols**: RMI and HTTP come 'out-of-the-box', connectors for other protocols are easily configured.
 
+**Flexibility in data storage**: application memory, filesystem (JSON, XML, CSV or any other file format) or database (SQL or non-SQL).
+
+**Embedded or standalone modes**, depending on the size and complexity of your app.
+
+[Read more about these features...](https://confluence.opensource.anotheria.net/display/MSK/MoSKito-Central+Overview)
+
+#Install & Config
+1. **Set it up ([remote (standalone) mode](https://confluence.opensource.anotheria.net/display/MSK/Setting+Up+MoSKito-Central+in+Remote+Mode) OR [embedded mode](https://confluence.opensource.anotheria.net/display/MSK/Set+Up+Moskito-Central+in+Embedded+Mode))**
+2. **Set up [connectors](https://confluence.opensource.anotheria.net/display/MSK/Setting+up+and+Starting+REST+and+DistributeMe+%28DiMe%29+Connectors)**
+3. **Configure [storage](https://confluence.opensource.anotheria.net/display/MSK/Configure+MoSKito-Central+Storage)**
+
+#License
+
+MoSKito-Central, as well as other MoSKito Projects, is free and open source (MIT License). Use it as you wish.
+
+# Project resources
+
+#### [Webpage](http://www.moskito.org/moskito-central.html)
+#### [Documentation](https://confluence.opensource.anotheria.net/display/MSK/MoSKito-Central)
+#### [FAQ](https://confluence.opensource.anotheria.net/display/MSK/MoSKito+FAQ)
+
+# Support and Feedback
+
+**We're willing to help everyone.**
+
+For any questions, write to [moskito@anotheria.net](mailto: moskito@anotheria.net).
