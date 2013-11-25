@@ -32,7 +32,7 @@ public class RESTConnectorTest extends JerseyTest {
 
 
     public RESTConnectorTest() {
-        super("org.moskito.central.endpoints.rest", "org.codehaus.jackson.jaxrs");
+        super("org.moskito.central.connectors.rest", "org.codehaus.jackson.jaxrs");
     }
 
 

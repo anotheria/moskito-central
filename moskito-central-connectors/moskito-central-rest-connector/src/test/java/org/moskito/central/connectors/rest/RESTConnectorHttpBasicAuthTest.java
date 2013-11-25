@@ -44,7 +44,7 @@ public class RESTConnectorHttpBasicAuthTest extends JerseyTest {
 
     @Override
     protected AppDescriptor configure() {
-        return new WebAppDescriptor.Builder("org.moskito.central.endpoints.rest;org.codehaus.jackson.jaxrs")
+        return new WebAppDescriptor.Builder("org.moskito.central.connectors.rest;org.codehaus.jackson.jaxrs")
                 .initParam(ResourceConfig.PROPERTY_CONTAINER_REQUEST_FILTERS, HttpBasicAuthFilter.class.getName()).build();
     }
 
