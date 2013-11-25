@@ -12,7 +12,7 @@ import java.util.HashMap;
  *
  * @author Vladyslav Bezuhlyi
  */
-public class REST_ConnectorTest extends JerseyTest {
+public class RESTConnectorTest extends JerseyTest {
 
     /**
      * Exposing sending method to test the connector.
@@ -31,7 +31,7 @@ public class REST_ConnectorTest extends JerseyTest {
     }
 
 
-    public REST_ConnectorTest() {
+    public RESTConnectorTest() {
         super("org.moskito.central.endpoints.rest", "org.codehaus.jackson.jaxrs");
     }
 
