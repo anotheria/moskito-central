@@ -15,7 +15,7 @@ import org.moskito.central.Snapshot;
  * 
  */
 @Path("/central")
-public class RESTEndpoint {
+public class REST_Endpoint {
 
 	/**
 	 * Central instance.
@@ -25,7 +25,7 @@ public class RESTEndpoint {
 	/**
 	 * Default constructor.
 	 */
-	public RESTEndpoint() {
+	public REST_Endpoint() {
 		central = Central.getInstance();
 	}
 
