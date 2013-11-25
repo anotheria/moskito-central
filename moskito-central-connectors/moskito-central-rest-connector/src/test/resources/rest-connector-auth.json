@@ -1,0 +1,8 @@
+{
+	host: "localhost",
+	port: 9988,
+	resourcePath: "/central/addSnapshot",
+    basicAuthEnabled : true,
+    login : "testlogin",
+    password : "testpassword"
+}

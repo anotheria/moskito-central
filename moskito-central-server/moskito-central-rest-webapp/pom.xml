@@ -21,7 +21,12 @@
 			<artifactId>moskito-central-core</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>com.sun.jersey.jersey-test-framework</groupId>
+            <artifactId>jersey-test-framework-grizzly2</artifactId>
+            <version>1.17.1</version>
+        </dependency>
+    </dependencies>
 
 	<build>
 		<plugins>
@@ -46,7 +51,25 @@
 					</webResources>
 				</configuration>
 			</plugin>
-		</plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>test-jar</goal>
+                        </goals>
+                        <phase>test-compile</phase>
+                    </execution>
+                </executions>
+                <configuration>
+                    <finalName>moskito-central-rest-webapp-${project.version}</finalName>
+                    <outputDirectory>${project.basedir}/target</outputDirectory>
+                    <testClassesDirectory>${project.basedir}/src/main/java</testClassesDirectory>
+                </configuration>
+            </plugin>
+        </plugins>
 	</build>
 
 </project>
