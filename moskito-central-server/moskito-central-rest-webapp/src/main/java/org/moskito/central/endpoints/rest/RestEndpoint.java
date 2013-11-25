@@ -15,7 +15,7 @@ import org.moskito.central.Snapshot;
  * 
  */
 @Path("/central")
-public class RestEndpoint {
+public class RESTEndpoint {
 
 	/**
 	 * Central instance.
@@ -23,45 +23,50 @@ public class RestEndpoint {
 	private Central central;
 
 	/**
-	 * Derfault constructor.
+	 * Default constructor.
 	 */
-	public RestEndpoint() {
+	public RESTEndpoint() {
 		central = Central.getInstance();
 	}
-	
-//	@GET
-//	@Path("/getSnapshot")
-//	@Produces({ MediaType.APPLICATION_JSON })
-//	public Snapshot getSnapshot() {
-//		Snapshot sn = new Snapshot();
-//
-//		SnapshotMetaData metaData = new SnapshotMetaData();
-//		metaData.setProducerId("prodId");
-//		metaData.setCategory("catId");
-//		metaData.setSubsystem("subSId");
-//
-//		sn.setMetaData(metaData);
-//
-//		HashMap<String, String> data = new HashMap<String, String>();
-//		data.put("firstname", "sidor");
-//		data.put("lastname", "sidorov");
-//		sn.addSnapshotData("test", data);
-//		sn.addSnapshotData("test2", data);
-//		sn.addSnapshotData("test3", data);
-//
-//		return sn;
-//	}
+
+    /**
+     * Sends {@link Snapshot} to the endpoint client.
+     *
+     * @return requested {@link Snapshot}
+     */
+	/*@GET
+	@Path("/getSnapshot")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public Snapshot getSnapshot() {
+		Snapshot snapshot = new Snapshot();
+
+		SnapshotMetaData metaData = new SnapshotMetaData();
+		metaData.setProducerId("prodId");
+		metaData.setCategory("catId");
+		metaData.setSubsystem("subSId");
+
+		snapshot.setMetaData(metaData);
+
+		HashMap<String, String> data = new HashMap<String, String>();
+		data.put("firstname", "moskito");
+		data.put("lastname", "central");
+		snapshot.addSnapshotData("test", data);
+		snapshot.addSnapshotData("test2", data);
+		snapshot.addSnapshotData("test3", data);
+
+		return snapshot;
+	}*/
 
 	/**
 	 * Receives {@link Snapshot} in order to transfer it to the central.
 	 * 
-	 * @param sn
+	 * @param snapshot received {@link Snapshot}
 	 */
 	@POST
 	@Path("/addSnapshot")
 	@Consumes({ MediaType.APPLICATION_JSON })
-	public void addSnapshot(Snapshot sn) {
-		central.processIncomingSnapshot(sn);
+	public void addSnapshot(Snapshot snapshot) {
+		central.processIncomingSnapshot(snapshot);
 	}
 
 }

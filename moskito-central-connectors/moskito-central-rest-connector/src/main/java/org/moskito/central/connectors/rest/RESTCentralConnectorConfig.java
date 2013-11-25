@@ -26,6 +26,22 @@ public class RESTCentralConnectorConfig {
 	 */
 	private String resourcePath;
 
+    /**
+     * Is HTTP basic auth enabled.
+     */
+    private boolean basicAuthEnabled;
+
+    /**
+     * Basic auth login.
+     */
+    private String login;
+
+    /**
+     * Basic auth password.
+     */
+    private String password;
+
+
 	public String getHost() {
 		return host;
 	}
@@ -50,9 +66,40 @@ public class RESTCentralConnectorConfig {
 		this.resourcePath = resourcePath;
 	}
 
-	@Override
-	public String toString() {
-		return "RESTConfig [host=" + host + ", port=" + port + ", resourcePath=" + resourcePath + "]";
-	}
+    public boolean isBasicAuthEnabled() {
+        return basicAuthEnabled;
+    }
+
+    public void setBasicAuthEnabled(boolean basicAuthEnabled) {
+        this.basicAuthEnabled = basicAuthEnabled;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "RESTCentralConnectorConfig{" +
+                "host='" + host + '\'' +
+                ", port=" + port +
+                ", resourcePath='" + resourcePath + '\'' +
+                ", basicAuthEnabled=" + basicAuthEnabled +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 
 }

@@ -21,13 +21,13 @@
 			<artifactId>moskito-central-core</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-		<!-- <dependency>
+		<dependency>
 			<groupId>org.moskito</groupId>
 			<artifactId>moskito-central-rest-webapp</artifactId>
 			<version>${project.version}</version>
-			<type>war</type>
-			<scope>test</scope>
-		</dependency> -->
+			<type>test-jar</type>
+            <scope>test</scope>
+		</dependency>
 		<dependency>
 			<groupId>net.anotheria</groupId>
 			<artifactId>configureme</artifactId>

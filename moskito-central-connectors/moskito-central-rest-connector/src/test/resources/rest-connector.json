@@ -1,5 +1,5 @@
 {
 	host: "localhost",
-	port: 8080,
-	resourcePath: "/moskito-central/central/",
+	port: 9988,
+	resourcePath: "/central/addSnapshot"
 }
