@@ -1,0 +1,9 @@
+{
+	host: "localhost",
+	port: 9463,
+	resourcePath: "/central/addSnapshot",
+    trustSelfSigned: true,
+    hostVerificationEnabled: true,
+    trustStoreFilePath: "./truststore_client",
+    trustStorePassword: "asdfgh"
+}

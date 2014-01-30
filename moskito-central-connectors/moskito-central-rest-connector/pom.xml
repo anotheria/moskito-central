@@ -25,6 +25,10 @@
 			<groupId>net.anotheria</groupId>
 			<artifactId>configureme</artifactId>
 		</dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+        </dependency>
 		<dependency>
 			<groupId>com.sun.jersey</groupId>
 			<artifactId>jersey-client</artifactId>
