@@ -1,5 +1,6 @@
 package org.moskito.central.connectors.rest;
 
+import com.sun.jersey.api.client.ClientHandlerException;
 import com.sun.jersey.api.container.grizzly2.GrizzlyServerFactory;
 import com.sun.jersey.api.core.PackagesResourceConfig;
 import com.sun.jersey.spi.container.servlet.ServletContainer;
@@ -27,12 +28,22 @@ import java.util.HashMap;
 public class RESTConnectorHttpsTest {
 
     /**
+     * Connector instance under test.
+     */
+    private ExposedRESTHttpsConnector connector;
+
+
+    /**
      * Exposing send method to test the HTTPS REST-connector.
      */
     public static class ExposedRESTHttpsConnector extends RESTHttpsConnector {
 
         public ExposedRESTHttpsConnector() {
             super.setConfigurationName("rest-connector-https");
+        }
+
+        public RESTConnectorConfig getConfig() {
+            return connectorConfig;
         }
 
         @Override
@@ -90,6 +101,8 @@ public class RESTConnectorHttpsTest {
     @Before
     public void startServer() {
         TestServer.start();
+        /* Each time the new connector with configuration as per config file */
+        connector = new ExposedRESTHttpsConnector();
     }
 
     @After
@@ -97,8 +110,43 @@ public class RESTConnectorHttpsTest {
         TestServer.stop();
     }
 
+
     @Test
-    public void testAddSnapshot() throws InterruptedException {
+    public void testHttpsWithTrustStore() {
+        /**
+         * Here and further we assume that start config for tests in rest-connector-https.json is the next:
+         * - correct truststore and password is specified,
+         * - host verification disabled,
+         * - untrusted (self-signed) certificates acceptance disabled
+         *
+         * And the server certificate used in test contains CN != "localhost" field.
+         **/
+        addSnapshot();
+    }
+
+    @Test(expected = ClientHandlerException.class)
+    public void testHostVerification() {
+        connector.getConfig().setHostVerificationEnabled(true);
+        addSnapshot();
+    }
+
+    @Test
+    public void testSelfSignedWithoutTrustStore() {
+        connector.getConfig().setTrustStoreFilePath(null);
+        connector.getConfig().setTrustSelfSigned(true);
+        addSnapshot();
+    }
+
+    @Test(expected = ClientHandlerException.class)
+    public void testSelfSignedWithHostVerification() {
+        connector.getConfig().setTrustStoreFilePath(null);
+        connector.getConfig().setTrustSelfSigned(true);
+        connector.getConfig().setHostVerificationEnabled(true);
+        addSnapshot();
+    }
+
+
+    public void addSnapshot() {
         Snapshot snapshot = new Snapshot();
 
         SnapshotMetaData metaData = new SnapshotMetaData();
@@ -115,9 +163,7 @@ public class RESTConnectorHttpsTest {
         snapshot.addSnapshotData("test2", data);
         snapshot.addSnapshotData("test3", data);
 
-        ExposedRESTHttpsConnector connector = new ExposedRESTHttpsConnector();
         connector.sendData(snapshot);
-        Thread.sleep(1000);
     }
 
 }

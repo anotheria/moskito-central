@@ -82,7 +82,7 @@ public class RESTHttpsConnector extends RESTConnector {
                 storeFile = new File(connectorConfig.getTrustStoreFilePath());
             }
 
-            if(storeFile.exists()) {
+            if(storeFile != null && storeFile.exists()) {
                 storeStream = new FileInputStream(storeFile);
                 KeyStore trustStore = KeyStore.getInstance("JKS");
                 trustStore.load(storeStream, connectorConfig.getTrustStorePassword().toCharArray());
