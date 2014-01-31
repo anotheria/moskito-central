@@ -2,8 +2,8 @@
 	host: "localhost",
 	port: 9463,
 	resourcePath: "/central/addSnapshot",
-    trustSelfSigned: true,
-    hostVerificationEnabled: true,
-    trustStoreFilePath: "./truststore_client",
-    trustStorePassword: "asdfgh"
+    trustSelfSigned: false,
+    hostVerificationEnabled: false,
+    trustStoreFilePath: "./target/test-classes/central_connector_truststore.jks",
+    trustStorePassword: "moskito"
 }

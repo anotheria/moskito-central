@@ -61,8 +61,8 @@ public class RESTConnectorHttpsTest {
             registration.addMapping("/*");
 
             SSLContextConfigurator sslConfigurator = new SSLContextConfigurator();
-            sslConfigurator.setKeyStoreFile("./keystore_server");
-            sslConfigurator.setKeyStorePass("asdfgh");
+            sslConfigurator.setKeyStoreFile("./target/test-classes/central_server_keystore.jks");
+            sslConfigurator.setKeyStorePass("moskito");
             SSLContext sslContext = sslConfigurator.createSSLContext();
 
             try {
