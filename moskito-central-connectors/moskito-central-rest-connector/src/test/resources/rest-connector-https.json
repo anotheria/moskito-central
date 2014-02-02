@@ -1,0 +1,9 @@
+{
+	host: "localhost",
+	port: 9463,
+	resourcePath: "/central/addSnapshot",
+    trustSelfSigned: false,
+    hostVerificationEnabled: false,
+    trustStoreFilePath: "./target/test-classes/central_connector_truststore.jks",
+    trustStorePassword: "moskito"
+}
