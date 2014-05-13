@@ -32,7 +32,7 @@ public class RESTConnector extends AbstractCentralConnector {
 	/**
 	 * Connector config instance.
 	 */
-	private RESTCentralConnectorConfig restConfig;
+	protected RESTConnectorConfig connectorConfig;
 
 
 	/**
@@ -45,9 +45,9 @@ public class RESTConnector extends AbstractCentralConnector {
 
     @Override
     public void setConfigurationName(String configurationName) {
-        restConfig = new RESTCentralConnectorConfig();
-        ConfigurationManager.INSTANCE.configureAs(restConfig, configurationName);
-        log.debug("Config: " + restConfig);
+        connectorConfig = new RESTConnectorConfig();
+        ConfigurationManager.INSTANCE.configureAs(connectorConfig, configurationName);
+        log.debug("Config: " + connectorConfig);
     }
 
     @Override
@@ -57,19 +57,24 @@ public class RESTConnector extends AbstractCentralConnector {
     }
 
     private Client getClient() {
-        ClientConfig clientConfig = new DefaultClientConfig();
-        clientConfig.getClasses().add(JacksonJaxbJsonProvider.class);
-        clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
-        Client client = Client.create(clientConfig);
-        if (restConfig.isBasicAuthEnabled()) {
+        Client client = Client.create(getClientConfig());
+        if (connectorConfig.isBasicAuthEnabled()) {
             /* adding HTTP basic auth header to request */
-            client.addFilter(new HTTPBasicAuthFilter(restConfig.getLogin(), restConfig.getPassword()));
+            client.addFilter(new HTTPBasicAuthFilter(connectorConfig.getLogin(), connectorConfig.getPassword()));
         }
+
         return client;
     }
 
-    private URI getBaseURI() {
-        return UriBuilder.fromUri("http://" + restConfig.getHost() + restConfig.getResourcePath()).port(restConfig.getPort()).build();
+    protected ClientConfig getClientConfig() {
+        ClientConfig clientConfig = new DefaultClientConfig();
+        clientConfig.getClasses().add(JacksonJaxbJsonProvider.class);
+        clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
+        return clientConfig;
+    }
+
+    protected URI getBaseURI() {
+        return UriBuilder.fromUri("http://" + connectorConfig.getHost() + connectorConfig.getResourcePath()).port(connectorConfig.getPort()).build();
     }
 
 }
