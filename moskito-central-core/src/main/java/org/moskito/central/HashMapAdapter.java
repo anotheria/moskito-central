@@ -1,14 +1,13 @@
 package org.moskito.central;
 
+import org.moskito.central.HashMapAdapter.MyMapType;
+
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlAdapter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
-
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.adapters.XmlAdapter;
-
-import org.moskito.central.HashMapAdapter.MyMapType;
 
 /**
  * 
@@ -20,7 +19,7 @@ import org.moskito.central.HashMapAdapter.MyMapType;
 public class HashMapAdapter<K, V> extends XmlAdapter<MyMapType<K, V>, HashMap<K, V>> {
 
 	/**
-	 * Default construcotr.
+	 * Default constructor.
 	 */
 	public HashMapAdapter() {
 
