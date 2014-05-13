@@ -3,7 +3,6 @@ package org.moskito.central.storage.psql;
 import org.configureme.ConfigurationManager;
 import org.moskito.central.Snapshot;
 import org.moskito.central.storage.Storage;
-import org.moskito.central.storage.fs.FileSystemStorage;
 import org.moskito.central.storage.psql.entities.JSONStatisticsEntity;
 import org.moskito.central.storage.psql.entities.SnapshotEntity;
 import org.moskito.central.storage.psql.entities.StatisticsEntity;
@@ -34,7 +33,7 @@ public class PSQLStorage implements Storage {
 	/**
 	 * Logger instance.
 	 */
-	private static Logger log = LoggerFactory.getLogger(FileSystemStorage.class);
+	private static Logger log = LoggerFactory.getLogger(PSQLStorage.class);
 
 	/**
 	 * Storage config.
