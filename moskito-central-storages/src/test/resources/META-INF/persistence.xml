@@ -1,0 +1,22 @@
+<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+	version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
+
+	<persistence-unit name="snapshotStorage" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<class>org.moskito.central.storage.psql.entities.SnapshotEntity</class>
+		<class>org.moskito.central.storage.psql.entities.FilterStatEntity</class>
+		<class>org.moskito.central.storage.psql.entities.HttpSessionStatisticsEntity</class>
+		<class>org.moskito.central.storage.psql.entities.JSONStatisticsEntity</class>
+		<class>org.moskito.central.storage.psql.entities.MemoryPoolStatEntity</class>
+		<class>org.moskito.central.storage.psql.entities.MemoryStatEntity</class>
+		<class>org.moskito.central.storage.psql.entities.OSStatEntity</class>
+		<class>org.moskito.central.storage.psql.entities.RuntimeStatEntity</class>
+		<class>org.moskito.central.storage.psql.entities.ServiceStatsEntity</class>
+		<class>org.moskito.central.storage.psql.entities.StatisticsEntity</class>
+		<class>org.moskito.central.storage.psql.entities.ThreadCountStatEntity</class>
+		<class>org.moskito.central.storage.psql.entities.ThreadStatesStatEntity</class>
+	</persistence-unit>
+
+
+</persistence>

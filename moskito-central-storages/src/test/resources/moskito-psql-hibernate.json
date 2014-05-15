@@ -21,5 +21,23 @@
             "statEntityClass": "org.moskito.central.storage.psql.ServiceStatsEntity"
 		},
 	],
+	
+	"postgres": {
+		"driver":"org.postgresql.Driver",
+		"url":"jdbc:postgresql://localhost:5432/hypo",
+		"userName":"postgres",
+		"password":"postgres",
+		"hibernateDialect":"org.hibernate.dialect.PostgreSQL82Dialect",
+		"@mappings" : [
+			{
+				"producerName": "SessionCount",
+	            "statEntityClass": "org.moskito.central.storage.psql.HttpSessionStatisticsEntity"
+			},
+			{
+				"producerName": "testProducerId,*API,*Service*",
+	            "statEntityClass": "org.moskito.central.storage.psql.ServiceStatsEntity"
+			},
+		],
+	}
 
 }

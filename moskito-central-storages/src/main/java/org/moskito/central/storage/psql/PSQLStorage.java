@@ -64,14 +64,14 @@ public class PSQLStorage implements Storage {
 
 		if (config.getHibernateDialect() != null) {
 			map.put("hibernate.dialect", config.getHibernateDialect());
-			map.put("hibernate.hbm2ddl.auto", "create");
-			map.put("hibernate.show_sql", "false");
 		}
-
+		map.put("hibernate.hbm2ddl.auto", "update");
+		map.put("hibernate.show_sql", "true");
+		
 		try {
 			factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME, map);
 		} catch (PersistenceException e) {
-			log.error("Persistence.createEntityManagerFactory(" + PERSISTENCE_UNIT_NAME + ", [" + map + "])", e);
+			log.error("Persistence.createEntityManagerFactory({}, ({})", PERSISTENCE_UNIT_NAME, map, e);
 		}
 	}
 
