@@ -46,6 +46,12 @@
 						<groupId>net.anotheria</groupId>
 						<artifactId>distributeme-generator</artifactId>
 						<version>${distributeme.version}</version>
+						<exclusions>
+							<exclusion>
+								<groupId>blowfish</groupId>
+								<artifactId>blowfish</artifactId>
+							</exclusion>
+						</exclusions>
 					</dependency>
 				</dependencies>
 				<executions>
