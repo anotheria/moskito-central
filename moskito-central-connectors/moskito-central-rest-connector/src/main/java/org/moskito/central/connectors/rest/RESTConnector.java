@@ -32,7 +32,7 @@ public class RESTConnector extends AbstractCentralConnector {
 	/**
 	 * Connector config instance.
 	 */
-	protected RESTConnectorConfig connectorConfig;
+	private RESTConnectorConfig connectorConfig;
 
     private volatile Client client;
 
@@ -77,6 +77,10 @@ public class RESTConnector extends AbstractCentralConnector {
 
     protected URI getBaseURI() {
         return UriBuilder.fromUri("http://" + connectorConfig.getHost() + connectorConfig.getResourcePath()).port(connectorConfig.getPort()).build();
+    }
+
+    protected RESTConnectorConfig getConnectorConfig(){
+        return connectorConfig;
     }
 
 }

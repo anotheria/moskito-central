@@ -60,7 +60,7 @@ public class RESTHttpsConnector extends RESTConnector {
      * @return {@link javax.net.ssl.HostnameVerifier} implementation instance according to connector's config.
      */
     private HostnameVerifier getHostnameVerifier() {
-        if (connectorConfig.isHostVerificationEnabled()) {
+        if (getConnectorConfig().isHostVerificationEnabled()) {
             return new BrowserCompatHostnameVerifier();
         }
         return new AllowAllHostnameVerifier();
@@ -78,22 +78,22 @@ public class RESTHttpsConnector extends RESTConnector {
         FileInputStream storeStream = null;
 
         try {
-            if (StringUtils.isNotEmpty(connectorConfig.getTrustStoreFilePath())) {
-                storeFile = new File(connectorConfig.getTrustStoreFilePath());
+            if (StringUtils.isNotEmpty(getConnectorConfig().getTrustStoreFilePath())) {
+                storeFile = new File(getConnectorConfig().getTrustStoreFilePath());
             }
 
             if(storeFile != null && storeFile.exists()) {
                 storeStream = new FileInputStream(storeFile);
                 KeyStore trustStore = KeyStore.getInstance("JKS");
-                trustStore.load(storeStream, connectorConfig.getTrustStorePassword().toCharArray());
+                trustStore.load(storeStream, getConnectorConfig().getTrustStorePassword().toCharArray());
 
-                if (connectorConfig.isTrustSelfSigned()) {
+                if (getConnectorConfig().isTrustSelfSigned()) {
                     builder.loadTrustMaterial(trustStore, new TrustSelfSignedStrategy());
                 } else {
                     builder.loadTrustMaterial(trustStore);
                 }
             } else { /* default TrustStore will be used */
-                if (connectorConfig.isTrustSelfSigned()) {
+                if (getConnectorConfig().isTrustSelfSigned()) {
                     builder.loadTrustMaterial(null, new TrustSelfSignedStrategy());
                 } else {
                     builder.loadTrustMaterial(null);
@@ -116,7 +116,7 @@ public class RESTHttpsConnector extends RESTConnector {
 
     @Override
     protected URI getBaseURI() {
-        return UriBuilder.fromUri("https://" + connectorConfig.getHost() + connectorConfig.getResourcePath()).port(connectorConfig.getPort()).build();
+        return UriBuilder.fromUri("https://" + getConnectorConfig().getHost() + getConnectorConfig().getResourcePath()).port(getConnectorConfig().getPort()).build();
     }
 
 }
