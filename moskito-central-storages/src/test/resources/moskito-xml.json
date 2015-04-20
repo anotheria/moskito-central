@@ -1,0 +1,8 @@
+{
+  "pattern": "/tmp/central/{host}/{component}/{producer}/{interval}/{date}/{date}_{time}_{producer}.xml",
+  "serializer": "org.moskito.central.storage.serializer.XMLSerializer",
+  "includeIntervals": "*",
+  "excludeIntervals": "1m",
+  "includeProducers": "*",
+  "excludeProducers": ""
+}
