@@ -34,6 +34,9 @@ public class RESTConnector extends AbstractCentralConnector {
 	 */
 	private RESTConnectorConfig connectorConfig;
 
+    /**
+     * Cached client instance.
+     */
     private volatile Client client;
 
 	/**
