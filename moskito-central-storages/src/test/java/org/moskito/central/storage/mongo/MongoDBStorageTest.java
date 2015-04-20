@@ -1,4 +1,5 @@
-package org.moskito.central.storage.fs;
+package org.moskito.central.storage.mongo;
+
 
 import org.junit.Test;
 import org.moskito.central.Snapshot;
@@ -6,17 +7,16 @@ import org.moskito.central.SnapshotMetaData;
 
 import java.util.HashMap;
 
-
 /**
- * @author andriiskrypnyk
+ * Created by andriiskrypnyk on 4/20/15.
  */
-public class XMLSerilizerTest {
+public class MongoDBStorageTest {
 
     @Test
-    public void testSerializer() {
+    public void mongoTest() {
+        MongoDBStorage storage = new MongoDBStorage();
+        storage.configure("moskito-mongoDB");
 
-        FileSystemStorage storage = new FileSystemStorage();
-        storage.configure("moskito-xml");
         Snapshot sn = new Snapshot();
 
         SnapshotMetaData snmd = new SnapshotMetaData();
@@ -27,17 +27,15 @@ public class XMLSerilizerTest {
         snmd.setCreationTimestamp(System.currentTimeMillis());
         sn.setMetaData(snmd);
         HashMap<String, String> cumulated = new HashMap<String, String>();
-        cumulated.put("Number", "2");
+        cumulated.put("Number", "7");
         cumulated.put("Volume", "7509");
         sn.addSnapshotData("cumulated", cumulated);
-        HashMap<String, String> brioche=new HashMap<String, String>();
-        brioche.put("Number","2");
-        brioche.put("Volume","7509");
-        sn.addSnapshotData("brioche",brioche);
-
+        HashMap<String, String> brioche = new HashMap<String, String>();
+        brioche.put("Number", "2");
+        brioche.put("Volume", "7509");
+        sn.addSnapshotData("brioche", brioche);
 
         storage.processSnapshot(sn);
-
 
     }
 

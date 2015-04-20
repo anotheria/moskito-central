@@ -20,5 +20,10 @@
             "clazz": "org.moskito.central.storage.fs.FileSystemStorage",
             "configName": "moskito-xml"
         },
+        {
+            "name": "mongo-db",
+            "clazz": "org.moskito.central.storage.mongo.MongoDBStorage",
+            "configName": "moskito-mongoDB"
+        }
     ]
 }
