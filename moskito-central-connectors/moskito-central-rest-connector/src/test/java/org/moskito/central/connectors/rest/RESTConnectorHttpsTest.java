@@ -11,6 +11,7 @@ import org.glassfish.grizzly.ssl.SSLContextConfigurator;
 import org.glassfish.grizzly.ssl.SSLEngineConfigurator;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.moskito.central.Snapshot;
 import org.moskito.central.SnapshotMetaData;
@@ -25,6 +26,7 @@ import java.util.HashMap;
  *
  * @author Vladyslav Bezuhlyi
  */
+@Ignore
 public class RESTConnectorHttpsTest {
 
     /**
