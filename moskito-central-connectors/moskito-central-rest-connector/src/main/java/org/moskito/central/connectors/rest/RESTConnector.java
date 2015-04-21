@@ -34,6 +34,7 @@ public class RESTConnector extends AbstractCentralConnector {
 	 */
 	protected RESTConnectorConfig connectorConfig;
 
+    private volatile Client client;
 
 	/**
 	 * Default constructor.
@@ -48,11 +49,12 @@ public class RESTConnector extends AbstractCentralConnector {
         connectorConfig = new RESTConnectorConfig();
         ConfigurationManager.INSTANCE.configureAs(connectorConfig, configurationName);
         log.debug("Config: " + connectorConfig);
+        client = getClient();
     }
 
     @Override
     protected void sendData(Snapshot snapshot) {
-        WebResource resource = getClient().resource(getBaseURI());
+        WebResource resource = client.resource(getBaseURI());
         resource.accept(MediaType.APPLICATION_JSON).type(MediaType.APPLICATION_JSON).post(snapshot);
     }
 
