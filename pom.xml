@@ -171,7 +171,11 @@
 				<artifactId>distributeme-agents</artifactId>
 				<version>${distributeme.version}</version>
 			</dependency>
-
+			<dependency>
+				<groupId>org.mongodb</groupId>
+				<artifactId>mongodb-driver</artifactId>
+				<version>3.0.0</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	<dependencies>

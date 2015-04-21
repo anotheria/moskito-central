@@ -1,0 +1,13 @@
+{
+  "host":"localhost",
+  "port":"27017",
+  "dbName":"burgertest",
+  "login":"BNM",
+  "password":"111",
+  "collectionName":"snapshot",
+  "distributeProducers":"true",
+  "includeIntervals": "*",
+  "excludeIntervals": "1m",
+  "includeProducers": "*",
+  "excludeProducers": ""
+}
