@@ -45,7 +45,7 @@ public class RESTConnectorHttpsTest {
         }
 
         public RESTConnectorConfig getConfig() {
-            return connectorConfig;
+            return getConnectorConfig();
         }
 
         @Override

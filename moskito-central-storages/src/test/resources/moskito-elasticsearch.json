@@ -1,0 +1,12 @@
+{
+  "host": "https://jpz5b8map3:3w5f4l96qn@burgertest-4700652667.eu-west-1.bonsai.io",
+  "port": "9300",
+  "api": "http",
+  "proxy": "true",
+  "clusterName": "elasticsearch",
+  "index": "snapshot",
+  "includeIntervals": "*",
+  "excludeIntervals": "1m",
+  "includeProducers": "*",
+  "excludeProducers": ""
+}

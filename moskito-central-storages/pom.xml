@@ -12,6 +12,11 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>org.elasticsearch</groupId>
+			<artifactId>elasticsearch</artifactId>
+			<version>1.5.1</version>
+		</dependency>
+		<dependency>
 			<groupId>org.moskito</groupId>
 			<artifactId>moskito-central-core</artifactId>
 			<version>${project.version}</version>
