@@ -24,6 +24,11 @@
             "name": "mongo-db",
             "clazz": "org.moskito.central.storage.mongo.MongoDBStorage",
             "configName": "moskito-mongoDB"
+        },
+        {
+            "name": "elasticsearch",
+            "clazz": "org.moskito.central.storage.elasticsearch.ElasticsearchStorage",
+            "configName": "moskito-elasticsearch"
         }
     ]
 }

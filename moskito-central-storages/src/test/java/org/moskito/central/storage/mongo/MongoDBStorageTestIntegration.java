@@ -10,7 +10,7 @@ import java.util.HashMap;
 /**
  * Created by andriiskrypnyk on 4/20/15.
  */
-public class MongoDBStorageTest {
+public class MongoDBStorageTestIntegration {
 
     @Test
     public void mongoTest() {
