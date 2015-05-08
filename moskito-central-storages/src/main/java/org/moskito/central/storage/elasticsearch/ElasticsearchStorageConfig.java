@@ -11,34 +11,54 @@ import org.moskito.central.storage.fs.IncludeExcludeList;
 
 @ConfigureMe
 public class ElasticsearchStorageConfig {
-
+    /**
+     * Elasticsearch host
+     */
     @Configure
     private String host;
-
+    /**
+     * Elasticsearch port
+     */
     @Configure
     private String port;
-
+    /**
+     * API for elasticsearch connection(via java or http)
+     */
     @Configure
     private String api;
-
+    /**
+     * if proxy set to true, port is not used
+     */
     @Configure
     private String proxy;
-
+    /**
+     * Name of the elasticsearch cluster
+     */
     @Configure
     private String clusterName;
-
+    /**
+     * Elasticsearch index
+     */
     @Configure
     private String index;
-
+    /**
+     * includeProducers.
+     */
     @Configure
     private String includeProducers = "*";
-
+    /**
+     * excludeProducers.
+     */
     @Configure
     private String excludeProducers = "";
-
+    /**
+     * includeIntervals.
+     */
     @Configure
     private String includeIntervals = "*";
-
+    /**
+     * excludeIntervals.
+     */
     @Configure
     private String excludeIntervals = "";
 
@@ -142,12 +162,22 @@ public class ElasticsearchStorageConfig {
         this.producers = producers;
     }
 
+    /**
+     * afterConfiguration.
+     */
     @AfterConfiguration
     public void afterConfiguration() {
         intervals = new IncludeExcludeList(includeIntervals, excludeIntervals);
         producers = new IncludeExcludeList(includeProducers, excludeProducers);
     }
 
+    /**
+     * Checks on availability producerId and interval.
+     *
+     * @param producerId
+     * @param intervalName
+     * @return boolean.
+     */
     public boolean include(String producerId, String intervalName) {
         if (!intervals.include(intervalName))
             return false;

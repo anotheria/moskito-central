@@ -28,11 +28,17 @@ import java.io.IOException;
 public class ElasticsearchStorage implements Storage {
 
     private static Logger log = LoggerFactory.getLogger(ElasticsearchStorage.class);
-
+    /**
+     * Storage config.
+     */
     private ElasticsearchStorageConfig config;
-
+    /**
+     * Transport client if java api is used
+     */
     private Client transportClient;
-
+    /**
+     * Http client if http api is used
+     */
     private CloseableHttpClient httpClient;
 
     private Gson gson = new GsonBuilder().setPrettyPrinting().create();
