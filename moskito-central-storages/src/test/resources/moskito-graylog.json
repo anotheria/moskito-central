@@ -1,0 +1,5 @@
+{
+  "host": "http://adoptix.net",
+  "port": "9009",
+  "path": "gelf"
+}
