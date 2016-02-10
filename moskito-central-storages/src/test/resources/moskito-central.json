@@ -29,6 +29,11 @@
             "name": "elasticsearch",
             "clazz": "org.moskito.central.storage.elasticsearch.ElasticsearchStorage",
             "configName": "moskito-elasticsearch"
+        },
+        {
+            "name": "rabbitmq",
+            "clazz": "org.moskito.central.storage.elasticsearch.RabbitStorage",
+            "configName": "moskito-rabbitmq"
         }
     ]
 }
