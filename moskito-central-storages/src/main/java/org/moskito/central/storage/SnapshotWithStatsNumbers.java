@@ -1,4 +1,4 @@
-package org.moskito.central.storage.rabbitmq;
+package org.moskito.central.storage;
 
 import org.moskito.central.HashMapAdapter;
 import org.moskito.central.Snapshot;
