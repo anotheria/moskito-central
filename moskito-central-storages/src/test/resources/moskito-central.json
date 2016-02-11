@@ -34,6 +34,11 @@
             "name": "rabbitmq",
             "clazz": "org.moskito.central.storage.elasticsearch.RabbitStorage",
             "configName": "moskito-rabbitmq"
+        },
+        {
+            "name": "graylog",
+            "clazz": "org.moskito.central.storage.graylog.GraylogStorage",
+            "configName": "moskito-graylog"
         }
     ]
 }

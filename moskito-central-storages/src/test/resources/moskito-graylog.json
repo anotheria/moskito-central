@@ -1,5 +1,21 @@
 {
   "host": "http://adoptix.net",
   "port": "9009",
-  "path": "gelf"
+  "path": "gelf",
+  "includeIntervals": "*",
+  "excludeIntervals": "",
+
+  "@entries": [
+    {
+      "includedIntervals": "*",
+      "includedProducers": "SessionCount",
+    }
+  ,
+    {
+      "includedProducers": "*Filter*",
+      "includedCategories": "*",
+      "includedSubsystems": "*",
+      "includedIntervals": "*"
+    }
+  ]
 }

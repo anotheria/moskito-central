@@ -11,8 +11,8 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.configureme.ConfigurationManager;
 import org.moskito.central.Snapshot;
-import org.moskito.central.storage.SnapshotWithStatsNumbers;
 import org.moskito.central.storage.Storage;
+import org.moskito.central.storage.helpers.SnapshotWithStatsNumbers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -70,33 +70,49 @@ public class GraylogStorage implements Storage {
 
     @Override
     public void processSnapshot(Snapshot target) {
-        createHttpClient();
-        HttpPost request = new HttpPost(config.getHost() + ':' + config.getPort() + '/' + config.getPath());
-        try {
-            String message = gson.toJson(new SnapshotWithStatsNumbers(target));
+        String producerId = target.getMetaData().getProducerId();
+        String category = target.getMetaData().getCategory();
+        String subsystem = target.getMetaData().getSubsystem();
+        String interval = target.getMetaData().getIntervalName();
 
-            SnapshotGelf snapshotGelf = new SnapshotGelfBuilder()
-                    .host(InetAddress.getLocalHost().getHostName())
-                    .shortMessage("moskito logs")
-                    .message(message)
-                    .build();
+        IncludeExcludeFields fields = new IncludeExcludeFields();
+        fields.setProducer(producerId);
+        fields.setCategory(category);
+        fields.setSubsystem(subsystem);
+        fields.setInterval(interval);
 
-            StringEntity params = new StringEntity(gson.toJson(snapshotGelf));
-            request.addHeader("content-type", "application/x-www-form-urlencoded");
-            request.setEntity(params);
+        System.out.println(config);
 
-            httpClient.execute(request);
-
-        } catch (UnsupportedEncodingException e) {
-            log.error("GraylogPublisher.sendMessage(): couldn't create StringEntity");
-        } catch (IOException e) {
-            log.error("GraylogPublisher.sendMessage(): couldn't execute query");
-        } finally {
-            request.releaseConnection();
+        if (config.include(fields)) {
+            createHttpClient();
+            HttpPost request = new HttpPost(config.getHost() + ':' + config.getPort() + '/' + config.getPath());
             try {
-                httpClient.close();
+                String message = gson.toJson(new SnapshotWithStatsNumbers(target));
+
+                SnapshotGelf snapshotGelf = new SnapshotGelfBuilder()
+                        .host(InetAddress.getLocalHost().getHostName())
+                        .shortMessage("moskito logs")
+                        .message(message)
+                        .build();
+
+                StringEntity params = new StringEntity(gson.toJson(snapshotGelf));
+                request.addHeader("content-type", "application/x-www-form-urlencoded");
+                request.setEntity(params);
+
+                httpClient.execute(request);
+
+            } catch (UnsupportedEncodingException e) {
+                log.error("GraylogPublisher.sendMessage(): couldn't create StringEntity");
             } catch (IOException e) {
-                log.error("couldn't close connecion to graylog server", e);
+                log.error("GraylogPublisher.sendMessage(): couldn't execute query");
+            } finally {
+                request.releaseConnection();
+                try {
+                    httpClient.close();
+                    httpClient = null;
+                } catch (IOException e) {
+                    log.error("couldn't close connecion to graylog server", e);
+                }
             }
         }
     }

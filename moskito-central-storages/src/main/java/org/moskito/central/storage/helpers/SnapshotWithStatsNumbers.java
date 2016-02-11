@@ -1,4 +1,4 @@
-package org.moskito.central.storage;
+package org.moskito.central.storage.helpers;
 
 import org.moskito.central.HashMapAdapter;
 import org.moskito.central.Snapshot;
@@ -14,7 +14,7 @@ import java.util.Set;
 /**
  * Created by Roman Stetsiuk on 2/3/16.
  */
-public class SnapshotWithStatsNumbers implements Serializable{
+public class SnapshotWithStatsNumbers implements Serializable {
     private static final long serialVersionUID = 5908354352999422349L;
 
     /**
