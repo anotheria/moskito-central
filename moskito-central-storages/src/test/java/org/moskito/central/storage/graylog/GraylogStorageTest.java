@@ -2,13 +2,10 @@ package org.moskito.central.storage.graylog;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import org.graylog2.gelfclient.*;
-import org.graylog2.gelfclient.transport.GelfTransport;
 import org.junit.Test;
 import org.moskito.central.Snapshot;
 import org.moskito.central.SnapshotMetaData;
 
-import java.net.InetSocketAddress;
 import java.util.HashMap;
 
 /**
