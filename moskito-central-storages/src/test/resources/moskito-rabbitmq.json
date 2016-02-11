@@ -1,0 +1,11 @@
+{
+  "host": "adoptix.net",
+  "port": 8087,
+  "queueName": "moskitoTest",
+  "user": "test",
+  "password": "test",
+  "includeIntervals": "*",
+  "excludeIntervals": "1m",
+  "includeProducers": "*",
+  "excludeProducers": ""
+}
