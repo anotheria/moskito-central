@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.moskito.central.storage.fs.IncludeExcludeWildcardList;
+import org.moskito.central.storage.helpers.IncludeExcludeWildcardList;
 import org.moskito.central.storage.psql.entities.FilterStatEntity;
 import org.moskito.central.storage.psql.entities.HttpSessionStatisticsEntity;
 import org.moskito.central.storage.psql.entities.MemoryStatEntity;

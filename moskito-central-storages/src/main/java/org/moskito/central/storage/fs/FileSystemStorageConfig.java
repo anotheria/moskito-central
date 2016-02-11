@@ -3,6 +3,7 @@ package org.moskito.central.storage.fs;
 import org.configureme.annotations.AfterConfiguration;
 import org.configureme.annotations.Configure;
 import org.configureme.annotations.ConfigureMe;
+import org.moskito.central.storage.helpers.IncludeExcludeList;
 
 /**
  * FileSystemStorageConfig class.

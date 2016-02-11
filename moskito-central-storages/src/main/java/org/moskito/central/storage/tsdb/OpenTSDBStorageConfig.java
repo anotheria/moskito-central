@@ -3,7 +3,7 @@ package org.moskito.central.storage.tsdb;
 import org.configureme.annotations.AfterConfiguration;
 import org.configureme.annotations.Configure;
 import org.configureme.annotations.ConfigureMe;
-import org.moskito.central.storage.fs.IncludeExcludeList;
+import org.moskito.central.storage.helpers.IncludeExcludeList;
 
 import java.util.ArrayList;
 import java.util.Arrays;

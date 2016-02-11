@@ -6,8 +6,8 @@ import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.ConnectionFactory;
 import org.configureme.ConfigurationManager;
 import org.moskito.central.Snapshot;
-import org.moskito.central.storage.SnapshotWithStatsNumbers;
 import org.moskito.central.storage.Storage;
+import org.moskito.central.storage.helpers.SnapshotWithStatsNumbers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

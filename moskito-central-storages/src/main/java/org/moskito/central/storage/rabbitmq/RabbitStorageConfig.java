@@ -2,7 +2,7 @@ package org.moskito.central.storage.rabbitmq;
 
 import org.configureme.annotations.Configure;
 import org.configureme.annotations.ConfigureMe;
-import org.moskito.central.storage.fs.IncludeExcludeList;
+import org.moskito.central.storage.helpers.IncludeExcludeList;
 
 /**
  * Created by Roman Stetsiuk on 2/1/16.
