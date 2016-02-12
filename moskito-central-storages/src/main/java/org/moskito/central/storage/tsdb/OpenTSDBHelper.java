@@ -134,8 +134,8 @@ public class OpenTSDBHelper {
 		ArrayList<String> valueNames = ((ArrayList<String>) cachedValueNames.get(snapshot.getMetaData().getProducerId()));
 		if (valueNames != null)
 			return valueNames;
-		valueNames = new ArrayList<String>();
-		Set<Map.Entry<String, HashMap<String, String>>> entries = snapshot.getEntrySet();
+		valueNames = new ArrayList<>();
+		Set<Map.Entry<String, Map<String, String>>> entries = snapshot.getEntrySet();
 		if (entries.size() == 0) {
 			List<String> old = cachedValueNames.putIfAbsent(snapshot.getMetaData().getProducerId(), valueNames);
 			return old == null ? valueNames : old;

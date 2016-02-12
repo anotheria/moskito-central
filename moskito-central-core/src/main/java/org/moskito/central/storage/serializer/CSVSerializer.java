@@ -1,21 +1,16 @@
 package org.moskito.central.storage.serializer;
 
+import net.anotheria.util.NumberUtils;
+import org.moskito.central.Snapshot;
+
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
-import org.moskito.central.Snapshot;
-import net.anotheria.util.NumberUtils;
-
 /**
  * Special serializer for comma-separater-value list files.
- * 
+ *
  * @author lrosenberg
  * @since 24.03.13 23:06
  */
@@ -81,8 +76,8 @@ public class CSVSerializer {
 		ArrayList<String> valueNames = ((ArrayList<String>) cachedValueNames.get(snapshot.getMetaData().getProducerId()));
 		if (valueNames != null)
 			return valueNames;
-		valueNames = new ArrayList<String>();
-		Set<Map.Entry<String, HashMap<String, String>>> entries = snapshot.getEntrySet();
+		valueNames = new ArrayList<>();
+		Set<Map.Entry<String, Map<String, String>>> entries = snapshot.getEntrySet();
 		if (entries.size() == 0) {
 			List<String> old = cachedValueNames.putIfAbsent(snapshot.getMetaData().getProducerId(), valueNames);
 			return old == null ? valueNames : old;

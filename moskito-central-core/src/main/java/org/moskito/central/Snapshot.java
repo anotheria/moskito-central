@@ -14,7 +14,7 @@ import java.util.Set;
 
 /**
  * Represents a single snapshot.
- * 
+ *
  * @author lrosenberg
  * @since 15.03.13 23:15
  */
@@ -38,8 +38,8 @@ public class Snapshot implements Serializable {
 	/**
 	 * Stat values.
 	 */
-	@XmlJavaTypeAdapter(MapAdapter.class)
-	private HashMap<String, HashMap<String, String>> stats = new HashMap<String, HashMap<String, String>>();
+	@XmlJavaTypeAdapter(StatsMapAdapter.class)
+	private Map<String, Map<String, String>> stats = new HashMap<>();
 
 	/**
 	 * Default constructor.
@@ -58,11 +58,11 @@ public class Snapshot implements Serializable {
 
 	/**
 	 * Adds snapshot data to the stats map.
-	 * 
+	 *
 	 * @param name
 	 * @param values
 	 */
-	public void addSnapshotData(String name, HashMap<String, String> values) {
+	public void addSnapshotData(String name, Map<String, String> values) {
 		stats.put(name, values);
 	}
 
@@ -73,7 +73,7 @@ public class Snapshot implements Serializable {
 
 	/**
 	 * Gets statistics by specified {@link String} key.
-	 * 
+	 *
 	 * @param stat
 	 * @return {@link Map<String, String>}
 	 */
@@ -81,7 +81,7 @@ public class Snapshot implements Serializable {
 		return stats.get(stat);
 	}
 
-	public Set<Entry<String, HashMap<String, String>>> getEntrySet() {
+	public Set<Entry<String, Map<String, String>>> getEntrySet() {
 		return stats.entrySet();
 	}
 
@@ -91,27 +91,27 @@ public class Snapshot implements Serializable {
 
 	/**
 	 * Gets all statistics.
-	 * 
-	 * @return {@link HashMap<String, HashMap<String, String>>}
+	 *
+	 * @return {@link Map<String, Map<String, String>>}
 	 */
-	public HashMap<String, HashMap<String, String>> getStats() {
+	public Map<String, Map<String, String>> getStats() {
 		if (stats == null) {
-			stats = new HashMap<String, HashMap<String, String>>();
+			stats = new HashMap<>();
 		}
 		return stats;
 	}
 
-	public void setStats(HashMap<String, HashMap<String, String>> stats) {
+	public void setStats(Map<String, Map<String, String>> stats) {
 		this.stats = stats;
 	}
 
 	/**
 	 * XmlAdapter for String, HashMap<String, String>.
-	 * 
+	 *
 	 * @author dagafonov
-	 * 
+	 *
 	 */
-	public static class MapAdapter extends HashMapAdapter<String, HashMap<String, String>> {
+	public static class StatsMapAdapter extends MapAdapter<String, Map<String, String>> {
 
 	}
 

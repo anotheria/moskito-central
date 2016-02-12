@@ -1,6 +1,5 @@
 package org.moskito.central.storage.helpers;
 
-import org.moskito.central.HashMapAdapter;
 import org.moskito.central.Snapshot;
 import org.moskito.central.SnapshotMetaData;
 
@@ -28,7 +27,7 @@ public class SnapshotWithStatsNumbers implements Serializable {
      * Stat values.
      */
     @XmlJavaTypeAdapter(MapAdapter.class)
-    private HashMap<String, HashMap<String, Double>> stats = new HashMap<>();
+    private Map<String, Map<String, Double>> stats = new HashMap<>();
 
     public SnapshotWithStatsNumbers() {}
 
@@ -37,8 +36,8 @@ public class SnapshotWithStatsNumbers implements Serializable {
         this.stats = convertStats(snapshot.getStats());
     }
 
-    private HashMap<String, HashMap<String, Double>> convertStats(HashMap<String, HashMap<String, String>> stats) {
-        HashMap<String, HashMap<String, Double>> res = new HashMap<>();
+    private Map<String, Map<String, Double>> convertStats(Map<String, Map<String, String>> stats) {
+        Map<String, Map<String, Double>> res = new HashMap<>();
 
         for (String s : stats.keySet()) {
             res.put(s, convertStatsValueMap(stats.get(s)));
@@ -46,14 +45,14 @@ public class SnapshotWithStatsNumbers implements Serializable {
         return res;
     }
 
-    private HashMap<String, Double> convertStatsValueMap(HashMap<String, String> stringStringHashMap) {
-        HashMap<String, Double> res = new HashMap<>();
+    private Map<String, Double> convertStatsValueMap(Map<String, String> stringStringMap) {
+        Map<String, Double> res = new HashMap<>();
 
-        for (String s : stringStringHashMap.keySet()) {
-            if (stringStringHashMap.get(s).equals("NaN"))
+        for (String s : stringStringMap.keySet()) {
+            if (stringStringMap.get(s).equals("NaN"))
                 res.put(s, 0.0);
             else
-                res.put(s, Double.parseDouble(stringStringHashMap.get(s)));
+                res.put(s, Double.parseDouble(stringStringMap.get(s)));
         }
         return res;
     }
@@ -72,7 +71,7 @@ public class SnapshotWithStatsNumbers implements Serializable {
      * @param name
      * @param values
      */
-    public void addSnapshotData(String name, HashMap<String, Double> values) {
+    public void addSnapshotData(String name, Map<String, Double> values) {
         stats.put(name, values);
     }
 
@@ -92,7 +91,7 @@ public class SnapshotWithStatsNumbers implements Serializable {
         return stats.get(stat);
     }
 
-    public Set<Map.Entry<String, HashMap<String, Double>>> getEntrySet() {
+    public Set<Map.Entry<String, Map<String, Double>>> getEntrySet() {
         return stats.entrySet();
     }
 
@@ -103,19 +102,19 @@ public class SnapshotWithStatsNumbers implements Serializable {
     /**
      * Gets all statistics.
      *
-     * @return {@link HashMap<String, HashMap<String, Integer>>}
+     * @return {@link Map<String, Map<String, Integer>>}
      */
-    public HashMap<String, HashMap<String, Double>> getStats() {
+    public Map<String, Map<String, Double>> getStats() {
         if (stats == null) {
-            stats = new HashMap<String, HashMap<String, Double>>();
+            stats = new HashMap<>();
         }
         return stats;
     }
 
-    public void setStats(HashMap<String, HashMap<String, Double>> stats) {
+    public void setStats(Map<String, Map<String, Double>> stats) {
         this.stats = stats;
     }
 
-    public static class MapAdapter extends HashMapAdapter<String, HashMap<String, String>> {}
+    public static class MapAdapter extends org.moskito.central.MapAdapter<String, Map<String, String>> {}
 
 }

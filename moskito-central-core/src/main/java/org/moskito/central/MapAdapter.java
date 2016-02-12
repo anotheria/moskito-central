@@ -1,32 +1,33 @@
 package org.moskito.central;
 
-import org.moskito.central.HashMapAdapter.MyMapType;
+import org.moskito.central.MapAdapter.MyMapType;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 
 /**
- * 
+ *
  * @author dagafonov
- * 
+ *
  * @param <K>
  * @param <V>
  */
-public class HashMapAdapter<K, V> extends XmlAdapter<MyMapType<K, V>, HashMap<K, V>> {
+public class MapAdapter<K, V> extends XmlAdapter<MyMapType<K, V>, Map<K, V>> {
 
 	/**
 	 * Default constructor.
 	 */
-	public HashMapAdapter() {
+	public MapAdapter() {
 
 	}
 
 	@Override
-	public MyMapType<K, V> marshal(HashMap<K, V> arg0) {
+	public MyMapType<K, V> marshal(Map<K, V> arg0) {
 		MyMapType<K, V> myMapType = new MyMapType<K, V>();
 		for (Entry<K, V> entry : arg0.entrySet()) {
 			MyMapEntryType<K, V> myMapEntryType = new MyMapEntryType<K, V>();
@@ -38,19 +39,19 @@ public class HashMapAdapter<K, V> extends XmlAdapter<MyMapType<K, V>, HashMap<K,
 	}
 
 	@Override
-	public HashMap<K, V> unmarshal(MyMapType<K, V> arg0) {
-		HashMap<K, V> hashMap = new HashMap<K, V>();
+	public Map<K, V> unmarshal(MyMapType<K, V> arg0) {
+		Map<K, V> map = new HashMap<K, V>();
 		for (MyMapEntryType<K, V> myEntryType : arg0.entries) {
-			hashMap.put(myEntryType.key, myEntryType.value);
+			map.put(myEntryType.key, myEntryType.value);
 		}
-		return hashMap;
+		return map;
 	}
 
 	/**
 	 * Wrapper for all entries that stored in hash map.
-	 * 
+	 *
 	 * @author dagafonov
-	 * 
+	 *
 	 * @param <K>
 	 * @param <V>
 	 */
@@ -79,9 +80,9 @@ public class HashMapAdapter<K, V> extends XmlAdapter<MyMapType<K, V>, HashMap<K,
 
 	/**
 	 * Wrapper for key - value pair.
-	 * 
+	 *
 	 * @author dagafonov
-	 * 
+	 *
 	 * @param <K>
 	 * @param <V>
 	 */

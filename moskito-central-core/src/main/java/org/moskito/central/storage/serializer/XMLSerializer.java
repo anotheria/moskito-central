@@ -15,7 +15,6 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.ByteArrayOutputStream;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -100,7 +99,7 @@ public class XMLSerializer implements SnapshotSerializer {
         Element stats = document.createElement("stats");
         rootElement.appendChild(stats);
 
-        for (Map.Entry<String, HashMap<String, String>> entry : snapshot.getStats().entrySet()) {
+        for (Map.Entry<String, Map<String, String>> entry : snapshot.getStats().entrySet()) {
             Element statsNode = document.createElement(entry.getKey());
             stats.appendChild(statsNode);
 

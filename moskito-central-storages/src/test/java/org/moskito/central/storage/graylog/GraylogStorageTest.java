@@ -8,6 +8,7 @@ import org.moskito.central.Snapshot;
 import org.moskito.central.SnapshotMetaData;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Roman Stetsiuk on 2/1/16.
@@ -19,7 +20,7 @@ public class GraylogStorageTest {
     @Test
     public void testGraylogStorage() throws Exception {
 
-        GraylogStorage storage=new GraylogStorage();
+        GraylogStorage storage = new GraylogStorage();
         storage.configure("moskito-graylog");
 
         Snapshot sn = new Snapshot();
@@ -32,12 +33,12 @@ public class GraylogStorageTest {
             snmd.setCreationTimestamp(System.currentTimeMillis());
         sn.setMetaData(snmd);
 
-        HashMap<String, String> cumulated = new HashMap<String, String>();
+        Map<String, String> cumulated = new HashMap<>();
             cumulated.put("Number", "888");
             cumulated.put("Volume", "NaN");
         sn.addSnapshotData("cumulated", cumulated);
 
-        HashMap<String, String> brioche = new HashMap<String, String>();
+        Map<String, String> brioche = new HashMap<>();
             brioche.put("Number", "777");
             brioche.put("Volume", "7509");
         sn.addSnapshotData("brioche", brioche);
@@ -55,12 +56,12 @@ public class GraylogStorageTest {
         snmd2.setCreationTimestamp(System.currentTimeMillis());
         sn2.setMetaData(snmd2);
 
-        HashMap<String, String> cumulated2 = new HashMap<String, String>();
+        HashMap<String, String> cumulated2 = new HashMap<>();
         cumulated2.put("Number", "888");
         cumulated2.put("Volume", "NaN");
         sn2.addSnapshotData("cumulated", cumulated);
 
-        HashMap<String, String> brioche2 = new HashMap<String, String>();
+        HashMap<String, String> brioche2 = new HashMap<>();
         brioche2.put("Number", "777");
         brioche2.put("Volume", "7509");
         sn2.addSnapshotData("brioche", brioche2);
