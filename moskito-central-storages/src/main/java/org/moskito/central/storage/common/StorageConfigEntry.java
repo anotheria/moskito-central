@@ -1,4 +1,4 @@
-package org.moskito.central.storage.graylog;
+package org.moskito.central.storage.common;
 
 import org.configureme.annotations.Configure;
 import org.configureme.annotations.ConfigureMe;
@@ -7,7 +7,7 @@ import org.configureme.annotations.ConfigureMe;
  * Created by Roman Stetsiuk on 2/11/16.
  */
 @ConfigureMe
-public class GraylogStorageConfigEntry {
+public class StorageConfigEntry {
     /**
      * Included interval names, comma separated or '*'.
      */
@@ -18,7 +18,7 @@ public class GraylogStorageConfigEntry {
      * Excluded interval names, comma separated.
      */
     @Configure
-    private String excludedIntervals;
+    private String excludedIntervals = "";
 
     /**
      * Included producer names, comma separated or '*'.
@@ -30,7 +30,7 @@ public class GraylogStorageConfigEntry {
      * Excluded producer names, comma separated.
      */
     @Configure
-    private String excludedProducers;
+    private String excludedProducers = "";
 
     /**
      * Included category names, comma separated or '*'.
@@ -42,7 +42,7 @@ public class GraylogStorageConfigEntry {
      * Excluded category names, comma separated.
      */
     @Configure
-    private String excludedCategories;
+    private String excludedCategories = "";
 
      /**
      * Included subsystem names, comma separated or '*'.
@@ -54,7 +54,7 @@ public class GraylogStorageConfigEntry {
      * Excluded subsystems names, comma separated.
      */
     @Configure
-    private String excludedSubsystems;
+    private String excludedSubsystems = "";
 
     public String getIncludedIntervals() {
         return includedIntervals;
@@ -122,7 +122,7 @@ public class GraylogStorageConfigEntry {
 
     @Override
     public String toString() {
-        return "GraylogStorageConfigEntry{" +
+        return "StorageConfigEntry{" +
                 "includedIntervals='" + includedIntervals + '\'' +
                 ", excludedIntervals='" + excludedIntervals + '\'' +
                 ", includedProducers='" + includedProducers + '\'' +
@@ -133,4 +133,7 @@ public class GraylogStorageConfigEntry {
                 ", excludedSubsystems='" + excludedSubsystems + '\'' +
                 '}';
     }
+
+
 }
+

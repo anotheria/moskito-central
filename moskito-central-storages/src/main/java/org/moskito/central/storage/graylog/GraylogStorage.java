@@ -12,6 +12,7 @@ import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.configureme.ConfigurationManager;
 import org.moskito.central.Snapshot;
 import org.moskito.central.storage.Storage;
+import org.moskito.central.storage.common.IncludeExcludeFields;
 import org.moskito.central.storage.helpers.SnapshotWithStatsNumbers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +25,7 @@ import java.net.InetAddress;
  * Created by Roman Stetsiuk on 2/1/16.
  */
 public class GraylogStorage implements Storage {
+
     private static Logger log = LoggerFactory.getLogger(GraylogStorage.class);
 
     private Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -75,13 +77,14 @@ public class GraylogStorage implements Storage {
         String subsystem = target.getMetaData().getSubsystem();
         String interval = target.getMetaData().getIntervalName();
 
-        IncludeExcludeFields fields = new IncludeExcludeFields();
-        fields.setProducer(producerId);
-        fields.setCategory(category);
-        fields.setSubsystem(subsystem);
-        fields.setInterval(interval);
+        IncludeExcludeFields fields = new IncludeExcludeFields.Builder()
+                .setProducer(producerId)
+                .setCategory(category)
+                .setSubsystem(subsystem)
+                .setInterval(interval)
+                .build();
 
-        System.out.println(config);
+        log.info(config.toString());
 
         if (config.include(fields)) {
             createHttpClient();
@@ -116,6 +119,5 @@ public class GraylogStorage implements Storage {
             }
         }
     }
-
 
 }

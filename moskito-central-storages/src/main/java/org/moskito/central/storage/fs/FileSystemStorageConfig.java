@@ -3,16 +3,18 @@ package org.moskito.central.storage.fs;
 import org.configureme.annotations.AfterConfiguration;
 import org.configureme.annotations.Configure;
 import org.configureme.annotations.ConfigureMe;
+import org.moskito.central.storage.common.GenericStorageConfig;
+import org.moskito.central.storage.common.IncludeExcludeFields;
 import org.moskito.central.storage.helpers.IncludeExcludeList;
 
 /**
  * FileSystemStorageConfig class.
- * 
+ *
  * @author lrosenberg
  * @since 22.03.13 14:15
  */
 @ConfigureMe
-public class FileSystemStorageConfig {
+public class FileSystemStorageConfig extends GenericStorageConfig {
 
 	/**
 	 * Serializer name.
@@ -112,7 +114,9 @@ public class FileSystemStorageConfig {
 	 * afterConfiguration.
 	 */
 	@AfterConfiguration
+    @Override
 	public void afterConfiguration() {
+        super.afterConfiguration();
 		intervals = new IncludeExcludeList(includeIntervals, excludeIntervals);
 		producers = new IncludeExcludeList(includeProducers, excludeProducers);
 	}
@@ -125,15 +129,15 @@ public class FileSystemStorageConfig {
 
 	/**
 	 * Checks on availability producerId and interval.
-	 * 
+	 *
 	 * @param producerId
 	 * @param intervalName
 	 * @return boolean.
 	 */
-	public boolean include(String producerId, String intervalName) {
-		if (!intervals.include(intervalName))
-			return false;
+	public boolean include(IncludeExcludeFields fields, String producerId, String intervalName) {
+		if (!super.include(fields)) return false;
+        if (!intervals.include(intervalName)) return false;
+
 		return producers.include(producerId);
 	}
-
 }

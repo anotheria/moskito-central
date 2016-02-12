@@ -1,0 +1,17 @@
+{
+    "pattern": "/tmp/central/{host}/{component}/{producer}/{interval}/{date}/{date}_{time}_{producer}.json",
+    "serializer": "org.moskito.central.storage.serializer.GsonSerializer",
+
+    "@entries": [
+        {
+            "includedIntervals": "*",
+            "excludedIntervals": "1m",
+            "includedProducers": "SessionCount"
+        },
+        {
+            "includedCategories": "*API*",
+            "includedSubsystems": "*",
+            "includedIntervals": "*"
+        }
+    ]
+}
