@@ -2,6 +2,7 @@ package org.moskito.central.storage.graylog;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.moskito.central.Snapshot;
 import org.moskito.central.SnapshotMetaData;
@@ -11,11 +12,12 @@ import java.util.HashMap;
 /**
  * Created by Roman Stetsiuk on 2/1/16.
  */
+@Ignore
 public class GraylogStorageTest {
     private Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     @Test
-    public void elasticsearchTest() throws Exception {
+    public void testGraylogStorage() throws Exception {
 
         GraylogStorage storage=new GraylogStorage();
         storage.configure("moskito-graylog");

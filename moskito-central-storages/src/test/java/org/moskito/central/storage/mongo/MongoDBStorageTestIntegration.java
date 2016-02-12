@@ -1,6 +1,7 @@
 package org.moskito.central.storage.mongo;
 
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.moskito.central.Snapshot;
 import org.moskito.central.SnapshotMetaData;
@@ -10,10 +11,11 @@ import java.util.HashMap;
 /**
  * Created by andriiskrypnyk on 4/20/15.
  */
+@Ignore
 public class MongoDBStorageTestIntegration {
 
     @Test
-    public void mongoTest() {
+    public void testMongoDBStorage() {
         MongoDBStorage storage = new MongoDBStorage();
         storage.configure("moskito-mongoDB");
 
