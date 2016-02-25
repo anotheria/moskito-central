@@ -45,8 +45,8 @@ public class GraylogStorageConfig extends GenericStorageConfig {
     }
 
     public void setHost(String host) {
-        if (!host.contains(HTTP_PREFIX)) {
-            host += HTTP_PREFIX;
+        if (!host.startsWith(HTTP_PREFIX)) {
+            host = HTTP_PREFIX + host;
         }
         this.host = host;
     }
