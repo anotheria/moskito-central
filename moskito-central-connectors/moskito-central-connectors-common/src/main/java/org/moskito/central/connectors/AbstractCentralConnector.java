@@ -71,7 +71,11 @@ public abstract class AbstractCentralConnector extends AbstractMoskitoPlugin imp
 		try {
 			sendData(centralSnapshot);
 		} catch (Exception e) {
-			log.error(this.getClass().getSimpleName() + ".sendData() failed", e);
+			if(log.isDebugEnabled()) {
+				log.error(this.getClass().getSimpleName() + ".sendData() failed", e);
+			} else {
+				log.error(this.getClass().getSimpleName() + ".sendData() failed: " + e.getMessage());
+			}
 		}
 	}
 
