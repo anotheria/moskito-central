@@ -68,10 +68,10 @@ public class OpenTSDBStorage implements Storage {
         String producerId = target.getMetaData().getProducerId();
         String interval = target.getMetaData().getIntervalName();
         Set<String> stats = target.getKeySet();
-        if (stats==null || stats.size()==0)
+        if (stats==null || stats.isEmpty())
             return;
         Map<String, String> tags = helper.getTags(target);
-        List<OpenTSDBMetric> metrics = new ArrayList<OpenTSDBMetric>();
+        List<OpenTSDBMetric> metrics = new ArrayList<>();
         for (String stat : stats){
             if (!config.include(producerId, stat, interval))
                 continue;
@@ -90,7 +90,7 @@ public class OpenTSDBStorage implements Storage {
             HttpResponse response = client.execute(httpPost);
             if (SUCCESS_CODES[0] != response.getStatusLine().getStatusCode() &&
                     SUCCESS_CODES[1] != response.getStatusLine().getStatusCode()){
-                log.error("TSDB storage: failed to process snapshot: " + response.toString());
+                log.error("TSDB storage: failed to process snapshot: " + response);
             }
         } catch (Exception e) {
             log.error("TSDB storage: failed to process snapshot: " + e.getMessage());

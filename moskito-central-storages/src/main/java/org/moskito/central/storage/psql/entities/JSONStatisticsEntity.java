@@ -50,7 +50,7 @@ public class JSONStatisticsEntity extends StatisticsEntity {
 
 	@Override
 	public String toString() {
-		return "JSONStatisticsEntity [json=" + json + "]";
+		return "JSONStatisticsEntity [json=" + json + ']';
 	}
 
 }

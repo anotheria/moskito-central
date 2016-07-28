@@ -52,7 +52,7 @@ public class RabbitStorage implements Storage {
     public void processSnapshot(final Snapshot target) {
         try {
             initRabbitChannel();
-            RabbitPublisher task = new RabbitPublisher(target);
+            Runnable task = new RabbitPublisher(target);
             executorService.submit(task).get();
         } catch (InterruptedException e) {
             log.warn("RabbitStorage.processSnapshot(): rabbit publisher interrupted", e);

@@ -123,8 +123,8 @@ public class FileSystemStorageConfig extends GenericStorageConfig {
 
 	@Override
 	public String toString() {
-		return "Pat: " + getPattern() + ", InclIntervals: " + getIncludeIntervals() + ", ExclIntervals: " + getExcludeIntervals() + ", Ser: "
-				+ getSerializer() + ", InclProducers: " + getIncludeProducers() + ", ExclProducers: " + getExcludeProducers();
+        return "Pat: " + pattern + ", InclIntervals: " + includeIntervals + ", ExclIntervals: " + excludeIntervals + ", Ser: "
+				+ serializer + ", InclProducers: " + includeProducers + ", ExclProducers: " + excludeProducers;
 	}
 
 	/**

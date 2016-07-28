@@ -54,7 +54,7 @@ public class CSVFileStorage implements Storage{
 		String producerId = target.getMetaData().getProducerId();
 		String interval = target.getMetaData().getIntervalName();
 		Set<String> stats = target.getKeySet();
-		if (stats==null || stats.size()==0)
+		if (stats==null || stats.isEmpty())
 			return;
 		for (String stat : stats){
 			if (!config.include(producerId, stat, interval))

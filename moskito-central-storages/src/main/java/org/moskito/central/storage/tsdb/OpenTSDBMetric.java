@@ -34,7 +34,7 @@ public class OpenTSDBMetric implements Serializable {
 	/**
 	 * Tags.
 	 */
-	private Map<String, String> tags = new HashMap<String, String>();
+	private Map<String, String> tags = new HashMap<>();
 
     public String getMetric() {
         return metric;

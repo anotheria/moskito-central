@@ -74,7 +74,7 @@ public abstract class StatisticsEntity implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Statistics [id=" + id + "]";
+		return "Statistics [id=" + id + ']';
 	}
 
 }

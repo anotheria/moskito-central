@@ -20,7 +20,7 @@ public class CSVSerializer {
 	 * Cash for value names by producer. This allows to faster process snapshot,
 	 * without the need to resort each time.
 	 */
-	private ConcurrentMap<String, List<String>> cachedValueNames = new ConcurrentHashMap<String, List<String>>();
+	private ConcurrentMap<String, List<String>> cachedValueNames = new ConcurrentHashMap<>();
 
 	public byte[] serialize(Snapshot snapshot, String stat) {
 		List<String> valueNames = getValueNames(snapshot);
@@ -32,22 +32,22 @@ public class CSVSerializer {
 		for (String s : valueNames) {
 			boolean special = false;
 			if (ret.length() > 0)
-				ret.append(";");
+				ret.append(';');
 			if (s.equals("SnapshotTime")) {
 				special = true;
-				ret.append("\"" + NumberUtils.makeTimeString(creationTimestamp) + "\"");
+				ret.append('"').append(NumberUtils.makeTimeString(creationTimestamp)).append('"');
 			}
 			if (s.equals("SnapshotDate")) {
 				special = true;
-				ret.append("\"" + NumberUtils.makeDigitalDateStringLong(creationTimestamp) + "\"");
+				ret.append('"').append(NumberUtils.makeDigitalDateStringLong(creationTimestamp)).append('"');
 			}
 			if (s.equals("SnapshotTimestamp")) {
 				special = true;
-				ret.append("\"" + NumberUtils.makeISO8601TimestampString(creationTimestamp) + "\"");
+				ret.append('"').append(NumberUtils.makeISO8601TimestampString(creationTimestamp)).append('"');
 
 			}
 			if (!special)
-				ret.append("\"" + data.get(s) + "\"");
+				ret.append('"').append(data.get(s)).append('"');
 		}
 		try {
 			return ret.toString().getBytes("UTF-8");
@@ -61,8 +61,8 @@ public class CSVSerializer {
 		StringBuilder ret = new StringBuilder();
 		for (String s : valueNames) {
 			if (ret.length() > 0)
-				ret.append(";");
-			ret.append("\"" + s + "\"");
+				ret.append(';');
+			ret.append('"').append(s).append('"');
 		}
 		try {
 			return ret.toString().getBytes("UTF-8");
@@ -72,13 +72,12 @@ public class CSVSerializer {
 	}
 
 	private List<String> getValueNames(Snapshot snapshot) {
-		@SuppressWarnings("unchecked")
 		ArrayList<String> valueNames = ((ArrayList<String>) cachedValueNames.get(snapshot.getMetaData().getProducerId()));
 		if (valueNames != null)
 			return valueNames;
 		valueNames = new ArrayList<>();
 		Set<Map.Entry<String, Map<String, String>>> entries = snapshot.getEntrySet();
-		if (entries.size() == 0) {
+		if (entries.isEmpty()) {
 			List<String> old = cachedValueNames.putIfAbsent(snapshot.getMetaData().getProducerId(), valueNames);
 			return old == null ? valueNames : old;
 		}

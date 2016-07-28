@@ -23,7 +23,7 @@ public class RESTEndpointMock {
     @Path("/addSnapshot")
     @Consumes({ MediaType.APPLICATION_JSON })
     public void addSnapshot(Snapshot snapshot) {
-        System.out.println(snapshot.toString());
+        System.out.println(snapshot);
     }
 
 }

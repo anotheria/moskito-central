@@ -66,15 +66,14 @@ public class GraylogStorageConfig extends GenericStorageConfig {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("GraylogStorageConfig{");
-        sb.append("host='").append(host).append('\'');
-        sb.append(", port=").append(port);
-        sb.append(", path='").append(path).append('\'');
-        sb.append(", entries=").append(Arrays.toString(entries));
-        sb.append(", elements=").append(elements);
-        sb.append(", includeIntervals='").append(includeIntervals).append('\'');
-        sb.append(", excludeIntervals='").append(excludeIntervals).append('\'');
-        sb.append('}');
-        return sb.toString();
+        String sb = "GraylogStorageConfig{" + "host='" + host + '\'' +
+                ", port=" + port +
+                ", path='" + path + '\'' +
+                ", entries=" + Arrays.toString(entries) +
+                ", elements=" + elements +
+                ", includeIntervals='" + includeIntervals + '\'' +
+                ", excludeIntervals='" + excludeIntervals + '\'' +
+                '}';
+        return sb;
     }
 }

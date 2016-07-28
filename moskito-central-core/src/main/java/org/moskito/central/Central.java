@@ -7,7 +7,7 @@ import org.moskito.central.storage.Storage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -23,11 +23,11 @@ public class Central {
 	/**
 	 * Configured and therefore active storages.
 	 */
-	private ConcurrentMap<String, Storage> storages = new ConcurrentHashMap<String, Storage>();
+	private ConcurrentMap<String, Storage> storages = new ConcurrentHashMap<>();
 	/**
 	 * List used for faster iteration for snapshot delivery.
 	 */
-	private List<Storage> cachedList = new CopyOnWriteArrayList<Storage>();
+	private Collection<Storage> cachedList = new CopyOnWriteArrayList<>();
 
 	/**
 	 * Configuration.
@@ -54,8 +54,8 @@ public class Central {
 	 */
 	public static Central getConfiguredInstance(Configuration config){
 		Central instance = new Central();
-		instance.setConfiguration(config);
-		instance.setup();
+        instance.configuration = config;
+        instance.setup();
 		return instance;
 	}
 
@@ -77,15 +77,11 @@ public class Central {
 					log.warn("Storage "+storage+" for "+storageConfigEntry+" couldn't be configured properly.");
 				}
 
-			}catch(ClassNotFoundException cnf){
+			}catch(ClassNotFoundException | IllegalAccessException | InstantiationException cnf){
 				log.warn("Couldn't instantiate StorageConfigEntry "+storageConfigEntry+" due ",cnf);
-			} catch (InstantiationException e) {
-				log.warn("Couldn't instantiate StorageConfigEntry "+storageConfigEntry+" due ",e);
-			} catch (IllegalAccessException e) {
-				log.warn("Couldn't instantiate StorageConfigEntry "+storageConfigEntry+" due ",e);
 			}
 
-		}
+        }
 	}
 
 

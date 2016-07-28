@@ -54,7 +54,7 @@ public class StorageConfigEntry {
 	}
 
 	@Override public String toString(){
-		return "Name: "+getName()+", Class: "+getClazz()+", Config: "+getConfigName();
+        return "Name: "+ name +", Class: "+ clazz +", Config: "+ configName;
 	}
 }
 

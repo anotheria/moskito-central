@@ -28,47 +28,22 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>apt-maven-plugin</artifactId>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<annotationProcessors>
+						<annotationProcessor>
+							org.distributeme.processors.GeneratorProcessorFactory
+						</annotationProcessor>
+					</annotationProcessors>
+				</configuration>
 				<dependencies>
-					<dependency>
-						<groupId>org.jfrog.maven.annomojo</groupId>
-						<artifactId>maven-plugin-tools-anno</artifactId>
-						<version>1.3.1</version>
-						<exclusions>
-							<exclusion>
-								<groupId>com.sun</groupId>
-								<artifactId>tools</artifactId>
-							</exclusion>
-						</exclusions>
-					</dependency>
 					<dependency>
 						<groupId>net.anotheria</groupId>
 						<artifactId>distributeme-generator</artifactId>
 						<version>${distributeme.version}</version>
-						<exclusions>
-							<exclusion>
-								<groupId>blowfish</groupId>
-								<artifactId>blowfish</artifactId>
-							</exclusion>
-						</exclusions>
 					</dependency>
 				</dependencies>
-				<executions>
-					<execution>
-						<id>process</id>
-						<goals>
-							<goal>process</goal>
-						</goals>
-						<phase>generate-sources</phase>
-						<configuration>
-							<factory>org.distributeme.processors.GeneratorProcessorFactory</factory>
-							<encoding>UTF-8</encoding>
-							<verbose>true</verbose>
-							<outputDirectory>${project.basedir}/generated/java</outputDirectory>
-						</configuration>
-					</execution>
-				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

@@ -23,8 +23,7 @@ public class EmbeddedConnector extends AbstractCentralConnector {
 	 * Default constructor.
 	 */
 	public EmbeddedConnector() {
-		super();
-		central = Central.getInstance();
+        central = Central.getInstance();
 	}
 
 	@Override

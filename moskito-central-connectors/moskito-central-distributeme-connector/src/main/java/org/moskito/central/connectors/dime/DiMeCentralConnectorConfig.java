@@ -42,7 +42,7 @@ public class DiMeCentralConnectorConfig {
 
 	@Override
 	public String toString() {
-		return "DiMeCentralConnectorConfig [connectorHost=" + connectorHost + ", connectorPort=" + connectorPort + "]";
+		return "DiMeCentralConnectorConfig [connectorHost=" + connectorHost + ", connectorPort=" + connectorPort + ']';
 	}
 
 }

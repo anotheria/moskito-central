@@ -43,8 +43,7 @@ public class RESTConnector extends AbstractCentralConnector {
 	 * Default constructor.
 	 */
 	public RESTConnector() {
-		super();
-	}
+    }
 
 
     @Override

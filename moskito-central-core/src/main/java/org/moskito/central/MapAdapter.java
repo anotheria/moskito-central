@@ -28,9 +28,9 @@ public class MapAdapter<K, V> extends XmlAdapter<MyMapType<K, V>, Map<K, V>> {
 
 	@Override
 	public MyMapType<K, V> marshal(Map<K, V> arg0) {
-		MyMapType<K, V> myMapType = new MyMapType<K, V>();
+		MyMapType<K, V> myMapType = new MyMapType<>();
 		for (Entry<K, V> entry : arg0.entrySet()) {
-			MyMapEntryType<K, V> myMapEntryType = new MyMapEntryType<K, V>();
+			MyMapEntryType<K, V> myMapEntryType = new MyMapEntryType<>();
 			myMapEntryType.key = entry.getKey();
 			myMapEntryType.value = entry.getValue();
 			myMapType.entries.add(myMapEntryType);
@@ -40,7 +40,7 @@ public class MapAdapter<K, V> extends XmlAdapter<MyMapType<K, V>, Map<K, V>> {
 
 	@Override
 	public Map<K, V> unmarshal(MyMapType<K, V> arg0) {
-		Map<K, V> map = new HashMap<K, V>();
+		Map<K, V> map = new HashMap<>();
 		for (MyMapEntryType<K, V> myEntryType : arg0.entries) {
 			map.put(myEntryType.key, myEntryType.value);
 		}
@@ -61,7 +61,7 @@ public class MapAdapter<K, V> extends XmlAdapter<MyMapType<K, V>, Map<K, V>> {
 		/**
 		 * All keys and values will be transformed into {@link MyMapEntryType}.
 		 */
-		private List<MyMapEntryType<K, V>> entries = new ArrayList<MyMapEntryType<K, V>>();
+		private List<MyMapEntryType<K, V>> entries = new ArrayList<>();
 
 		public List<MyMapEntryType<K, V>> getEntries() {
 			return entries;
@@ -73,7 +73,7 @@ public class MapAdapter<K, V> extends XmlAdapter<MyMapType<K, V>, Map<K, V>> {
 
 		@Override
 		public String toString() {
-			return "MyMapType [entries=" + entries + "]";
+			return "MyMapType [entries=" + entries + ']';
 		}
 
 	}
@@ -117,7 +117,7 @@ public class MapAdapter<K, V> extends XmlAdapter<MyMapType<K, V>, Map<K, V>> {
 
 		@Override
 		public String toString() {
-			return "MyMapEntryType [key=" + key + ", value=" + value + "]";
+			return "MyMapEntryType [key=" + key + ", value=" + value + ']';
 		}
 
 	}

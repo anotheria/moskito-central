@@ -2,6 +2,7 @@ package org.moskito.central.storage.graylog;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpHost;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.conn.routing.HttpRoute;
@@ -98,7 +99,7 @@ public class GraylogStorage implements Storage {
                         .message(message)
                         .build();
 
-                StringEntity params = new StringEntity(gson.toJson(snapshotGelf));
+                HttpEntity params = new StringEntity(gson.toJson(snapshotGelf));
                 request.addHeader("content-type", "application/x-www-form-urlencoded");
                 request.setEntity(params);
 

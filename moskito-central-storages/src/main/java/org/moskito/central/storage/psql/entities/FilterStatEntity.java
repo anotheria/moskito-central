@@ -141,7 +141,7 @@ public class FilterStatEntity extends StatisticsEntity {
 	@Override
 	public String toString() {
 		return "FilterStatEntity [last=" + last + ", maximum=" + maximum + ", cr=" + cr + ", err=" + err + ", mcr=" + mcr + ", average=" + average
-				+ ", tt=" + tt + ", tr=" + tr + ", minimum=" + minimum + "]";
+				+ ", tt=" + tt + ", tr=" + tr + ", minimum=" + minimum + ']';
 	}
 
 }

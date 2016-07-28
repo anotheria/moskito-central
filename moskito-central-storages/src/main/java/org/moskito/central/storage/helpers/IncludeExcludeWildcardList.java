@@ -1,8 +1,8 @@
 package org.moskito.central.storage.helpers;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 import java.util.regex.Pattern;
 
 /**
@@ -16,12 +16,12 @@ public class IncludeExcludeWildcardList extends IncludeExcludeList {
     /**
      *
      */
-    private List<Pattern> includePatterns = new ArrayList<Pattern>();
+    private List<Pattern> includePatterns = new ArrayList<>();
 
     /**
      *
      */
-    private List<Pattern> excludePatterns = new ArrayList<Pattern>();
+    private List<Pattern> excludePatterns = new ArrayList<>();
 
     /**
      *
@@ -34,7 +34,7 @@ public class IncludeExcludeWildcardList extends IncludeExcludeList {
         fillPatterns(getExcludes(), excludePatterns);
     }
 
-    private void fillPatterns(Set<String> set, List<Pattern> patterns) {
+    private void fillPatterns(Iterable<String> set, Collection<Pattern> patterns) {
         for (String incl : set) {
             String s = incl;
             if (s.contains("*")) {
@@ -43,7 +43,7 @@ public class IncludeExcludeWildcardList extends IncludeExcludeList {
             if (s.contains("?")) {
                 s = s.replaceAll("\\?", ".{1}");
             }
-            patterns.add(Pattern.compile("^"+s+"$"));
+            patterns.add(Pattern.compile('^' +s+ '$'));
         }
     }
 

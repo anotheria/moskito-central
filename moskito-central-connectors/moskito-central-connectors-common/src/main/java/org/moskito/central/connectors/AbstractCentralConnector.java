@@ -97,7 +97,7 @@ public abstract class AbstractCentralConnector extends AbstractMoskitoPlugin imp
 
 		Map<String, StatSnapshot> coreStatSnapshots = coreSnapshot.getStatSnapshots();
 		for (Map.Entry<String, StatSnapshot> coreStatSnapshot : coreStatSnapshots.entrySet()) {
-			centralSnapshot.addSnapshotData(coreStatSnapshot.getKey(), new HashMap<String, String>(coreStatSnapshot.getValue().getValues()));
+			centralSnapshot.addSnapshotData(coreStatSnapshot.getKey(), new HashMap<>(coreStatSnapshot.getValue().getValues()));
 		}
 		return centralSnapshot;
 	}
@@ -111,7 +111,7 @@ public abstract class AbstractCentralConnector extends AbstractMoskitoPlugin imp
 
 	@Override
 	public String toString() {
-		return getClass().getSimpleName() + " " + componentName + "@" + host;
+		return getClass().getSimpleName() + ' ' + componentName + '@' + host;
 	}
 
 }
