@@ -127,7 +127,7 @@
 			<dependency>
 				<groupId>net.anotheria</groupId>
 				<artifactId>ano-net</artifactId>
-				<version>2.1.0</version>
+                <version>2.1.1-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>net.anotheria</groupId>
