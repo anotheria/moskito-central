@@ -80,7 +80,7 @@ public class SnapshotEntity implements Serializable {
 	 * Statistics map.
 	 */
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private Map<String, StatisticsEntity> statistics = new HashMap<String, StatisticsEntity>();
+	private Map<String, StatisticsEntity> statistics = new HashMap<>();
 	
 	public void setStatistics(Map<String, StatisticsEntity> statistics) {
 		this.statistics = statistics;
@@ -91,7 +91,7 @@ public class SnapshotEntity implements Serializable {
 	}
 
 	public void addStatistics(String key, StatisticsEntity value) {
-		getStatistics().put(key, value);
+		statistics.put(key, value);
 	}
 
 	public long getSnapshotId() {
@@ -192,7 +192,7 @@ public class SnapshotEntity implements Serializable {
 	public String toString() {
 		return "SnapshotEntity [snapshotId=" + snapshotId + ", producerId=" + producerId + ", componentName=" + componentName + ", hostName="
 				+ hostName + ", intervalName=" + intervalName + ", creationTimestamp=" + creationTimestamp + ", arrivalTimestamp=" + arrivalTimestamp
-				+ ", category=" + category + ", subsystem=" + subsystem + ", statistics=" + statistics + "]";
+				+ ", category=" + category + ", subsystem=" + subsystem + ", statistics=" + statistics + ']';
 	}
 
 }

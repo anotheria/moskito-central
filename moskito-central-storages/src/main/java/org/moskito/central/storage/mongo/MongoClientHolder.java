@@ -10,7 +10,7 @@ import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 import org.moskito.central.Snapshot;
 
-import java.util.Arrays;
+import java.util.Collections;
 
 /**
  * @author andriiskrypnyk
@@ -27,7 +27,7 @@ public enum MongoClientHolder {
     public void configure(MongoDBStorageConfig config) {
         this.config = config;
         MongoCredential credential = MongoCredential.createCredential(config.getLogin(), config.getDbName(), config.getPassword().toCharArray());
-        client = new MongoClient(new ServerAddress(config.getHost(), Integer.parseInt(config.getPort())), Arrays.asList(credential));
+        client = new MongoClient(new ServerAddress(config.getHost(), Integer.parseInt(config.getPort())), Collections.singletonList(credential));
     }
 
     public void storeSnapshot(Snapshot target) {

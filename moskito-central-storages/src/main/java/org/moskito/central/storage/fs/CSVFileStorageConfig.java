@@ -82,7 +82,7 @@ public class CSVFileStorageConfig {
 	}
 
 	@Override public String toString(){
-		return "Pattern: "+getPattern()+", Entries: "+ Arrays.toString(entries)+
+        return "Pattern: "+ pattern +", Entries: "+ Arrays.toString(entries)+
 				", InclIntervals: "+includeIntervals+
 				", ExclIntervals: "+excludeIntervals;
 
@@ -103,7 +103,7 @@ public class CSVFileStorageConfig {
 	@AfterConfiguration
 	public void afterConfig(){
 		IncludeExcludeList intervals = new IncludeExcludeList(includeIntervals, excludeIntervals);
-		List<CSVFileStorageConfigElement> newElements = new ArrayList<CSVFileStorageConfigElement>();
+		List<CSVFileStorageConfigElement> newElements = new ArrayList<>();
 		for (CSVFileStorageConfigEntry entry : entries){
 			CSVFileStorageConfigElement element = new CSVFileStorageConfigElement(entry, intervals);
 			newElements.add(element);
@@ -132,8 +132,8 @@ public class CSVFileStorageConfig {
 		public CSVFileStorageConfigElement(CSVFileStorageConfigEntry entry, IncludeExcludeList outerIntervals){
 			stats = new IncludeExcludeList(entry.getIncludedStats(), entry.getExcludedStats());
 			producers = new IncludeExcludeList(entry.getIncludedProducers(), entry.getExcludedProducers());
-			if ((entry.getIncludedIntervals()==null || entry.getIncludedIntervals().length()==0) &&
-				(entry.getExcludedIntervals()==null || entry.getExcludedIntervals().length()==0)){
+			if ((entry.getIncludedIntervals()==null || entry.getIncludedIntervals().isEmpty()) &&
+				(entry.getExcludedIntervals()==null || entry.getExcludedIntervals().isEmpty())){
 				intervals = outerIntervals;
 			}else{
 				intervals = new IncludeExcludeList(entry.getIncludedIntervals(), entry.getExcludedIntervals());

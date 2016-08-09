@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
+import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -61,16 +62,20 @@ public class ElasticsearchStorage implements Storage {
         if (config.getProxy().equals("true") && config.getApi().equals("http")) {
             config.setPort("");
         } else if (!config.getApi().equals("java")) {
-            config.setHost(config.getHost() + ":");
+            config.setHost(config.getHost() + ':');
         }
 
-        if (config.getApi().equals("java")) {
-            transportClient = getTransportClient();
-        } else if (config.getApi().equals("http")) {
-            httpClient = getHttpClient();
-            httpPrepareIndex();
-        } else {
-            log.error("API isn't defined, couldn't configure ElasticsearchStorage");
+        switch (config.getApi()) {
+            case "java":
+                transportClient = getTransportClient();
+                break;
+            case "http":
+                httpClient = getHttpClient();
+                httpPrepareIndex();
+                break;
+            default:
+                log.error("API isn't defined, couldn't configure ElasticsearchStorage");
+                break;
         }
 
     }
@@ -107,7 +112,7 @@ public class ElasticsearchStorage implements Storage {
 
     private void httpProcessSnapshot(Snapshot target) {
         httpClient = HttpClients.createDefault();
-        HttpPost post = new HttpPost(config.getHost() + config.getPort() + "/" + config.getIndex() + "/" + target.getMetaData().getProducerId().replaceAll(" ", ""));
+        HttpPost post = new HttpPost(config.getHost() + config.getPort() + '/' + config.getIndex() + '/' + target.getMetaData().getProducerId().replaceAll(" ", ""));
         try {
             StringEntity entity = new StringEntity(gson.toJson(target));
             entity.setContentType("application/json");
@@ -142,7 +147,7 @@ public class ElasticsearchStorage implements Storage {
     }
 
     private void httpPrepareIndex() {
-        HttpPut put = new HttpPut(config.getHost() + config.getPort() + "/" + config.getIndex());
+        HttpUriRequest put = new HttpPut(config.getHost() + config.getPort() + '/' + config.getIndex());
         try {
             httpClient.execute(put);
             httpClient.close();

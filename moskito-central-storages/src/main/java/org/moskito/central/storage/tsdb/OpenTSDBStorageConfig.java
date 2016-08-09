@@ -80,7 +80,7 @@ public class OpenTSDBStorageConfig {
 	}
 
 	@Override public String toString(){
-		return "Url: " + getUrl() + ", Entries: " + Arrays.toString(entries) +
+        return "Url: " + url + ", Entries: " + Arrays.toString(entries) +
 				", InclIntervals: " + includeIntervals +
 				", ExclIntervals: " + excludeIntervals;
 
@@ -101,7 +101,7 @@ public class OpenTSDBStorageConfig {
 	@AfterConfiguration
 	public void afterConfig(){
 		IncludeExcludeList intervals = new IncludeExcludeList(includeIntervals, excludeIntervals);
-		List<OpenTSDBStorageConfigElement> newElements = new ArrayList<OpenTSDBStorageConfigElement>();
+		List<OpenTSDBStorageConfigElement> newElements = new ArrayList<>();
 		for (OpenTSDBStorageConfigEntry entry : entries){
 			OpenTSDBStorageConfigElement element = new OpenTSDBStorageConfigElement(entry, intervals);
 			newElements.add(element);
@@ -130,8 +130,8 @@ public class OpenTSDBStorageConfig {
 		public OpenTSDBStorageConfigElement(OpenTSDBStorageConfigEntry entry, IncludeExcludeList outerIntervals){
 			stats = new IncludeExcludeList(entry.getIncludedStats(), entry.getExcludedStats());
 			producers = new IncludeExcludeList(entry.getIncludedProducers(), entry.getExcludedProducers());
-			if ((entry.getIncludedIntervals()==null || entry.getIncludedIntervals().length()==0) &&
-				(entry.getExcludedIntervals()==null || entry.getExcludedIntervals().length()==0)){
+			if ((entry.getIncludedIntervals()==null || entry.getIncludedIntervals().isEmpty()) &&
+				(entry.getExcludedIntervals()==null || entry.getExcludedIntervals().isEmpty())){
 				intervals = outerIntervals;
 			}else{
 				intervals = new IncludeExcludeList(entry.getIncludedIntervals(), entry.getExcludedIntervals());

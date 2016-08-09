@@ -7,7 +7,7 @@ import java.util.Map;
  * Created by Roman Stetsiuk on 2/10/16.
  */
 public class SnapshotGelfBuilder {
-    private final String version = "1.1";
+    private static final String version = "1.1";
     private String host;
     private String short_message;
     private String message;

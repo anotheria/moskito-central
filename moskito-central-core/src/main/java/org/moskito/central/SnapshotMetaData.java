@@ -151,6 +151,6 @@ public class SnapshotMetaData implements Serializable {
 	public String toString() {
 		return "SnapshotMetaData [producerId=" + producerId + ", componentName=" + componentName + ", hostName=" + hostName + ", intervalName="
 				+ intervalName + ", creationTimestamp=" + creationTimestamp + ", arrivalTimestamp=" + arrivalTimestamp + ", category=" + category
-				+ ", subsystem=" + subsystem + ", statClassName=" + statClassName + "]";
+				+ ", subsystem=" + subsystem + ", statClassName=" + statClassName + ']';
 	}
 }

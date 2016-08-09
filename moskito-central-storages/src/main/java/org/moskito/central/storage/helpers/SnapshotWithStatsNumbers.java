@@ -39,8 +39,8 @@ public class SnapshotWithStatsNumbers implements Serializable {
     private Map<String, Map<String, Double>> convertStats(Map<String, Map<String, String>> stats) {
         Map<String, Map<String, Double>> res = new HashMap<>();
 
-        for (String s : stats.keySet()) {
-            res.put(s, convertStatsValueMap(stats.get(s)));
+        for (Map.Entry<String, Map<String, String>> stringMapEntry : stats.entrySet()) {
+            res.put(stringMapEntry.getKey(), convertStatsValueMap(stringMapEntry.getValue()));
         }
         return res;
     }
@@ -48,11 +48,11 @@ public class SnapshotWithStatsNumbers implements Serializable {
     private Map<String, Double> convertStatsValueMap(Map<String, String> stringStringMap) {
         Map<String, Double> res = new HashMap<>();
 
-        for (String s : stringStringMap.keySet()) {
-            if (stringStringMap.get(s).equals("NaN"))
-                res.put(s, 0.0);
+        for (Map.Entry<String, String> stringStringEntry : stringStringMap.entrySet()) {
+            if (stringStringEntry.getValue().equals("NaN"))
+                res.put(stringStringEntry.getKey(), 0.0);
             else
-                res.put(s, Double.parseDouble(stringStringMap.get(s)));
+                res.put(stringStringEntry.getKey(), Double.parseDouble(stringStringEntry.getValue()));
         }
         return res;
     }
@@ -78,7 +78,7 @@ public class SnapshotWithStatsNumbers implements Serializable {
 
     @Override
     public String toString() {
-        return "Snapshot [metaData=" + metaData + ", stats=" + stats + "]";
+        return "Snapshot [metaData=" + metaData + ", stats=" + stats + ']';
     }
 
     /**

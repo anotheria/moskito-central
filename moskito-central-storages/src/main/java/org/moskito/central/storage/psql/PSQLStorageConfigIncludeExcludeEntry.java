@@ -70,6 +70,6 @@ public class PSQLStorageConfigIncludeExcludeEntry {
 	@Override
 	public String toString() {
 		return "PSQLStorageConfigIncludeExcludeEntry [includedIntervals=" + includedIntervals + ", excludedIntervals=" + excludedIntervals
-				+ ", includedProducers=" + includedProducers + ", excludedProducers=" + excludedProducers + "]";
+				+ ", includedProducers=" + includedProducers + ", excludedProducers=" + excludedProducers + ']';
 	}
 }

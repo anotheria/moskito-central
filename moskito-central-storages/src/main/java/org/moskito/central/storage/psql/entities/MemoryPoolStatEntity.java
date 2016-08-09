@@ -51,15 +51,15 @@ public class MemoryPoolStatEntity extends StatisticsEntity {
 
 	@Override
 	public void setStats(Map<String, String> stats) {
-		setMaximum(stats.get("MAX"));
-		setMaxUsed(stats.get("MAX_USED"));
-		setMaxCommitted(stats.get("MAX_COMMITED"));
-		setInit(stats.get("INIT"));
-		setCommitted(stats.get("COMMITED"));
-		setMinCommitted(stats.get("MIN_COMMITED"));
-		setMinUsed(stats.get("MIN_USED"));
-		setUsed(stats.get("USED"));
-	}
+        this.maximum = stats.get("MAX");
+        this.maxUsed = stats.get("MAX_USED");
+        this.maxCommitted = stats.get("MAX_COMMITED");
+        this.init = stats.get("INIT");
+        this.committed = stats.get("COMMITED");
+        this.minCommitted = stats.get("MIN_COMMITED");
+        this.minUsed = stats.get("MIN_USED");
+        this.used = stats.get("USED");
+    }
 
 	public String getMaximum() {
 		return maximum;

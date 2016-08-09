@@ -68,7 +68,7 @@ public class Snapshot implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Snapshot [metaData=" + metaData + ", stats=" + stats + "]";
+		return "Snapshot [metaData=" + metaData + ", stats=" + stats + ']';
 	}
 
 	/**

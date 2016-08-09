@@ -39,8 +39,7 @@ public class DiMeCentralConnector extends AbstractCentralConnector {
 	 * Default constructor.
 	 */
 	public DiMeCentralConnector() {
-		super();
-	}
+    }
 
 	@Override
 	public void setConfigurationName(String configurationName) {

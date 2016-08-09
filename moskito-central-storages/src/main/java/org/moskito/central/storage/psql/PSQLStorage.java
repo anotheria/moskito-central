@@ -56,7 +56,7 @@ public class PSQLStorage implements Storage {
 			log.warn("Couldn't configure PSQLStorage with " + configurationName + " , working with default values");
 		}
 
-		Map<String, String> map = new HashMap<String, String>();
+		Map<String, String> map = new HashMap<>();
 		map.put("javax.persistence.jdbc.driver", config.getDriver());
 		map.put("javax.persistence.jdbc.url", config.getUrl());
 		map.put("javax.persistence.jdbc.user", config.getUserName());

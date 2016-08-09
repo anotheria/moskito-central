@@ -21,12 +21,12 @@ public class IncludeExcludeList {
     /**
      * Include {@link Set}.
      */
-    private Set<String> includes = new HashSet<String>();
+    private Set<String> includes = new HashSet<>();
 
     /**
      * Exclude {@link Set}.
      */
-    private Set<String> excludes = new HashSet<String>();
+    private Set<String> excludes = new HashSet<>();
 
     /**
      *

@@ -49,7 +49,7 @@ public class OpenTSDBHelper {
 	 * Cash for value names by producer. This allows to faster process snapshot,
 	 * without the need to resort each time.
 	 */
-	private ConcurrentMap<String, List<String>> cachedValueNames = new ConcurrentHashMap<String, List<String>>();
+	private ConcurrentMap<String, List<String>> cachedValueNames = new ConcurrentHashMap<>();
 
     /**
      * Gson instance.
@@ -71,7 +71,7 @@ public class OpenTSDBHelper {
 		if (data == null)
 			return null;
 
-		List<OpenTSDBMetric> metrics = new ArrayList<OpenTSDBMetric>();
+		List<OpenTSDBMetric> metrics = new ArrayList<>();
 		long creationTimestamp = snapshot.getMetaData().getCreationTimestamp();
         NumberFormat nf = NumberFormat.getInstance();
 		for (String s : valueNames) {
@@ -106,7 +106,7 @@ public class OpenTSDBHelper {
      * @return tags map.
      */
     public Map<String, String> getTags(Snapshot snapshot) {
-        Map<String, String> tags = new HashMap<String, String>();
+        Map<String, String> tags = new HashMap<>();
         tags.put(TAG_HOST, snapshot.getMetaData().getHostName());
         tags.put(TAG_COMPONENT, snapshot.getMetaData().getComponentName());
         tags.put(TAG_INTERVAL, snapshot.getMetaData().getIntervalName());
@@ -130,13 +130,12 @@ public class OpenTSDBHelper {
      * @return collection of names.
      */
 	private List<String> getValueNames(Snapshot snapshot) {
-		@SuppressWarnings("unchecked")
 		ArrayList<String> valueNames = ((ArrayList<String>) cachedValueNames.get(snapshot.getMetaData().getProducerId()));
 		if (valueNames != null)
 			return valueNames;
 		valueNames = new ArrayList<>();
 		Set<Map.Entry<String, Map<String, String>>> entries = snapshot.getEntrySet();
-		if (entries.size() == 0) {
+		if (entries.isEmpty()) {
 			List<String> old = cachedValueNames.putIfAbsent(snapshot.getMetaData().getProducerId(), valueNames);
 			return old == null ? valueNames : old;
 		}

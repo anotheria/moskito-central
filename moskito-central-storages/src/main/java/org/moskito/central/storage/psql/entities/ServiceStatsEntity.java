@@ -141,7 +141,7 @@ public class ServiceStatsEntity extends StatisticsEntity {
 	@Override
 	public String toString() {
 		return "TestStatEntity [last=" + last + ", cr=" + cr + ", maximum=" + maximum + ", mcr=" + mcr + ", err=" + err + ", tr=" + tr + ", tt=" + tt
-				+ ", average=" + average + ", minimum=" + minimum + "]";
+				+ ", average=" + average + ", minimum=" + minimum + ']';
 	}
 
 }

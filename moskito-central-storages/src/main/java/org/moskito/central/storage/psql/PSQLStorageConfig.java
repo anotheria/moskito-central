@@ -94,7 +94,7 @@ public class PSQLStorageConfig {
 	/**
 	 * 
 	 */
-	private static final Map<String, Class<? extends StatisticsEntity>> predefined = new HashMap<String, Class<? extends StatisticsEntity>>();
+	private static final Map<String, Class<? extends StatisticsEntity>> predefined = new HashMap<>();
 	static {
 
 		/*
@@ -192,7 +192,7 @@ public class PSQLStorageConfig {
 	public String toString() {
 		return "PSQLStorageConfig [driver=" + driver + ", url=" + url + ", userName=" + userName + ", password=" + password + ", hibernateDialect="
 				+ hibernateDialect + ", mappings=" + Arrays.toString(mappings) + ", elements=" + elements + ", includeExclude="
-				+ Arrays.toString(includeExclude) + ", includeExcludeElements=" + includeExcludeElements + "]";
+				+ Arrays.toString(includeExclude) + ", includeExcludeElements=" + includeExcludeElements + ']';
 	}
 
 	/**
@@ -200,7 +200,7 @@ public class PSQLStorageConfig {
 	 */
 	@AfterConfiguration
 	public void afterConfig() {
-		List<PSQLStorageConfigProducerNameToEntityClassMappingIncludeExcludeElement> newElements = new ArrayList<PSQLStorageConfigProducerNameToEntityClassMappingIncludeExcludeElement>();
+		List<PSQLStorageConfigProducerNameToEntityClassMappingIncludeExcludeElement> newElements = new ArrayList<>();
 		if (mappings != null) {
 			for (PSQLStorageConfigProducerNameToEntityClassMappingEntry entry : mappings) {
 				PSQLStorageConfigProducerNameToEntityClassMappingIncludeExcludeElement element = new PSQLStorageConfigProducerNameToEntityClassMappingIncludeExcludeElement(
@@ -209,7 +209,7 @@ public class PSQLStorageConfig {
 			}
 			elements = newElements;
 		}
-		List<PSQLStorageConfigIncludeExcludeElement> newIncludeExcludeElements = new ArrayList<PSQLStorageConfigIncludeExcludeElement>();
+		List<PSQLStorageConfigIncludeExcludeElement> newIncludeExcludeElements = new ArrayList<>();
 		if (includeExclude != null) {
 			for (PSQLStorageConfigIncludeExcludeEntry entry : includeExclude) {
 				PSQLStorageConfigIncludeExcludeElement element = new PSQLStorageConfigIncludeExcludeElement(entry);
@@ -245,7 +245,7 @@ public class PSQLStorageConfig {
 
 		@Override
 		public String toString() {
-			return "PSQLStorageConfigElement [producers=" + producers + "]";
+			return "PSQLStorageConfigElement [producers=" + producers + ']';
 		}
 
 		public String getStatEntityClassName() {
@@ -280,7 +280,7 @@ public class PSQLStorageConfig {
 
 		@Override
 		public String toString() {
-			return "PSQLStorageConfigIncludeExcludeElement [producers=" + producers + ", intervals=" + intervals + "]";
+			return "PSQLStorageConfigIncludeExcludeElement [producers=" + producers + ", intervals=" + intervals + ']';
 		}
 
 	}

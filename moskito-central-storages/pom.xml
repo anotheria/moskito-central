@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.moskito</groupId>
 		<artifactId>moskito-central</artifactId>
-		<version>1.1.2-SNAPSHOT</version>
+        <version>1.1.2-SNAPSHOT</version>
 	</parent>
 	<artifactId>moskito-central-storages</artifactId>
 	<groupId>org.moskito</groupId>
@@ -30,7 +30,7 @@
 			<artifactId>hibernate-entitymanager</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>postgresql</groupId>
+			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 		</dependency>
 		<dependency>

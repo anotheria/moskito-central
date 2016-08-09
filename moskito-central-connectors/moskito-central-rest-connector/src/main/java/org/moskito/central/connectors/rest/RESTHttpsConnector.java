@@ -36,7 +36,6 @@ public class RESTHttpsConnector extends RESTConnector {
      * Default constructor.
      */
     public RESTHttpsConnector() {
-        super();
     }
 
     @Override
@@ -57,7 +56,7 @@ public class RESTHttpsConnector extends RESTConnector {
      * During handshaking, if the URL's hostname and the server's identification hostname mismatch,
      * the verification mechanism can call back to this verifier to make a decision.
      *
-     * @return {@link javax.net.ssl.HostnameVerifier} implementation instance according to connector's config.
+     * @return {@link HostnameVerifier} implementation instance according to connector's config.
      */
     private HostnameVerifier getHostnameVerifier() {
         if (getConnectorConfig().isHostVerificationEnabled()) {
@@ -67,9 +66,9 @@ public class RESTHttpsConnector extends RESTConnector {
     }
 
     /**
-     * Builds {@link javax.net.ssl.SSLContext} instance according to connector's config.
+     * Builds {@link SSLContext} instance according to connector's config.
      *
-     * @return Configured {@link javax.net.ssl.SSLContext} instance or null.
+     * @return Configured {@link SSLContext} instance or null.
      */
     private SSLContext getSslContext() {
         SSLContext sslContext = null;

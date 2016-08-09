@@ -30,8 +30,8 @@ public class StorageConfigElement {
         producers = new IncludeExcludeWildcardList(entry.getIncludedProducers(), entry.getExcludedProducers());
         subsystems = new IncludeExcludeWildcardList(entry.getIncludedSubsystems(), entry.getExcludedSubsystems());
 
-        if ((entry.getIncludedIntervals() == null || entry.getIncludedIntervals().length() == 0) &&
-                (entry.getExcludedIntervals() == null || entry.getExcludedIntervals().length() == 0)) {
+        if ((entry.getIncludedIntervals() == null || entry.getIncludedIntervals().isEmpty()) &&
+                (entry.getExcludedIntervals() == null || entry.getExcludedIntervals().isEmpty())) {
             intervals = outerIntervals;
         } else {
             intervals = new IncludeExcludeList(entry.getIncludedIntervals(), entry.getExcludedIntervals());

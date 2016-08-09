@@ -41,7 +41,7 @@ public class PSQLStorageConfigProducerNameToEntityClassMappingEntry {
 
 	@Override
 	public String toString() {
-		return "PSQLStorageConfigEntry [producerName=" + producerName + ", statEntityClass=" + statEntityClass + "]";
+		return "PSQLStorageConfigEntry [producerName=" + producerName + ", statEntityClass=" + statEntityClass + ']';
 	}
 
 }
