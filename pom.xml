@@ -19,7 +19,20 @@
 		<essential.version>2.3.1</essential.version>
         <configureme.version>2.3.1-SNAPSHOT</configureme.version>
 	</properties>
+	<profiles>
+		<profile>
+			<!-- activate on java >= 8 -->
+			<id>current_jdk</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+				<jdk>[1.8,)</jdk>
+			</activation>
 
+			<properties>
+				<distributeme.version>2.3.2-SNAPSHOT</distributeme.version>
+			</properties>
+		</profile>
+	</profiles>
 	<scm>
 		<url>git:git@github.com:anotheria/moskito-central.git</url>
 		<connection>scm:git:git@github.com:anotheria/moskito-central.git</connection>
