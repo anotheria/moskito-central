@@ -85,7 +85,7 @@ public class SnapshotWithStatsNumbers implements Serializable {
      * Gets statistics by specified {@link String} key.
      *
      * @param stat
-     * @return {@link Map <String, String>}
+     * @return {@link Map}
      */
     public Map<String, Double> getStatistics(String stat) {
         return stats.get(stat);
@@ -102,7 +102,7 @@ public class SnapshotWithStatsNumbers implements Serializable {
     /**
      * Gets all statistics.
      *
-     * @return {@link Map<String, Map<String, Integer>>}
+     * @return {@link Map}
      */
     public Map<String, Map<String, Double>> getStats() {
         if (stats == null) {

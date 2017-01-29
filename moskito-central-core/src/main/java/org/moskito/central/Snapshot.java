@@ -75,7 +75,7 @@ public class Snapshot implements Serializable {
 	 * Gets statistics by specified {@link String} key.
 	 *
 	 * @param stat
-	 * @return {@link Map<String, String>}
+	 * @return {@link Map}
 	 */
 	public Map<String, String> getStatistics(String stat) {
 		return stats.get(stat);
@@ -92,7 +92,7 @@ public class Snapshot implements Serializable {
 	/**
 	 * Gets all statistics.
 	 *
-	 * @return {@link Map<String, Map<String, String>>}
+	 * @return {@link Map}
 	 */
 	public Map<String, Map<String, String>> getStats() {
 		if (stats == null) {
@@ -106,7 +106,7 @@ public class Snapshot implements Serializable {
 	}
 
 	/**
-	 * XmlAdapter for String, HashMap<String, String>.
+	 * XmlAdapter for String, HashMap&lt;String, String&gt;.
 	 *
 	 * @author dagafonov
 	 *
