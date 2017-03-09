@@ -119,16 +119,24 @@ public class PSQLStorage implements Storage {
 			entity.addStatistics(key, entityInstance);
 		}
 
-		EntityManager manager = factory.createEntityManager();
-		EntityTransaction tr = manager.getTransaction();
+		EntityManager manager = null;
+		EntityTransaction tr = null;
 		try {
+			manager = factory.createEntityManager();
+			tr = manager.getTransaction();
 			tr.begin();
 			manager.persist(entity);
 			tr.commit();
 		} catch (Exception e) {
 			log.error("persist failed", e);
-			tr.rollback();
-		}
+			if(tr != null){
+				tr.rollback();
+			}
+		}finally {
+			if(manager != null){
+				manager.close();
+			}
+		}		
+		
 	}
-
 }
