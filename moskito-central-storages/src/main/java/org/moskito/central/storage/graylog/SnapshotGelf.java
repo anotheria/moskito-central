@@ -5,11 +5,16 @@ package org.moskito.central.storage.graylog;
  */
 public class SnapshotGelf {
     private String host;
+    private long timestamp;
     private String short_message;
     private String data;
 
     public void setHost(String host) {
         this.host = host;
+    }
+
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
     }
 
     public void setShortMessage(String short_message) {
@@ -19,6 +24,10 @@ public class SnapshotGelf {
 
     public String getHost() {
         return host;
+    }
+
+    public long getTimestamp() {
+        return timestamp;
     }
 
     public String getShortMessage() {
