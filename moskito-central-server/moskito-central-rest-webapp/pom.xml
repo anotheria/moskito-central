@@ -3,11 +3,11 @@
 	<parent>
 		<groupId>org.moskito</groupId>
 		<artifactId>moskito-central-server</artifactId>
-		<version>1.1.3-SNAPSHOT</version>
+		<version>1.1.4-SNAPSHOT</version>
 	</parent>
 	<artifactId>moskito-central-rest-webapp</artifactId>
 	<groupId>org.moskito</groupId>
-	<version>1.1.3-SNAPSHOT</version>
+	<version>1.1.4-SNAPSHOT</version>
 	<packaging>war</packaging>
 
 	<dependencies>
@@ -46,7 +46,13 @@
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjtools</artifactId>
 		</dependency>
-    </dependencies>
+		<!-- for logging purposes -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+		</dependency>
+
+	</dependencies>
 
 	<build>
 		<plugins>

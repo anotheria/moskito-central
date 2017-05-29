@@ -9,7 +9,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.moskito</groupId>
 	<artifactId>moskito-central</artifactId>
-	<version>1.1.3-SNAPSHOT</version>
+	<version>1.1.4-SNAPSHOT</version>
 	<name>moskito central snapshot storage</name>
 
 	<packaging>pom</packaging>
@@ -18,7 +18,7 @@
 
 		<jersey-version>1.17.1</jersey-version>
 		<distributeme.version>2.3.0</distributeme.version>
-		<essential.version>2.3.1</essential.version>
+		<essential.version>2.7.8</essential.version>
 		<configureme.version>2.3.4</configureme.version>
 	</properties>
 
