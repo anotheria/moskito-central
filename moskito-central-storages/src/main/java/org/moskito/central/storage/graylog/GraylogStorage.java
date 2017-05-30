@@ -94,9 +94,11 @@ public class GraylogStorage implements Storage {
 
                 SnapshotGelf snapshotGelf = new SnapshotGelfBuilder()
                         .host(InetAddress.getLocalHost().getHostName())
+                        .timestamp(target.getMetaData().getCreationTimestamp())
                         .shortMessage("moskito logs")
                         .message(message)
                         .build();
+
 
                 StringEntity params = new StringEntity(gson.toJson(snapshotGelf));
                 request.addHeader("content-type", "application/x-www-form-urlencoded");

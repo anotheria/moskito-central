@@ -9,6 +9,7 @@ import java.util.Map;
 public class SnapshotGelfBuilder {
     private final String version = "1.1";
     private String host;
+    private long timestamp;
     private String short_message;
     private String message;
     private Map<String, Object> fields = new HashMap<>();
@@ -23,6 +24,11 @@ public class SnapshotGelfBuilder {
 
     public SnapshotGelfBuilder host(final String host) {
         this.host = host;
+        return this;
+    }
+
+    public SnapshotGelfBuilder timestamp(final long timestamp) {
+        this.timestamp = timestamp;
         return this;
     }
 
@@ -68,6 +74,7 @@ public class SnapshotGelfBuilder {
 
         final SnapshotGelf snapshotGelf = new SnapshotGelf();
         snapshotGelf.setHost(host);
+        snapshotGelf.setTimestamp(timestamp / 1000);
         snapshotGelf.setShortMessage(short_message);
         snapshotGelf.setData(message);
 
