@@ -9,7 +9,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.moskito</groupId>
 	<artifactId>moskito-central</artifactId>
-	<version>1.1.4</version>
+	<version>1.1.5-SNAPSHOT</version>
 	<name>moskito central snapshot storage</name>
 
 	<packaging>pom</packaging>

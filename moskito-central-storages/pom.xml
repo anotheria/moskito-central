@@ -4,11 +4,11 @@
 	<parent>
 		<groupId>org.moskito</groupId>
 		<artifactId>moskito-central</artifactId>
-		<version>1.1.4</version>
+		<version>1.1.5-SNAPSHOT</version>
 	</parent>
 	<artifactId>moskito-central-storages</artifactId>
 	<groupId>org.moskito</groupId>
-	<version>1.1.4</version>
+	<version>1.1.5-SNAPSHOT</version>
 
 	<dependencies>
 		<dependency>
