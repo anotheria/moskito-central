@@ -1,6 +1,7 @@
 package org.moskito.central.storage.psql;
 
 import org.configureme.ConfigurationManager;
+import org.hsqldb.jdbc.JDBCDataSource;
 import org.moskito.central.Snapshot;
 import org.moskito.central.storage.Storage;
 import org.moskito.central.storage.psql.entities.JSONStatisticsEntity;
@@ -9,11 +10,16 @@ import org.moskito.central.storage.psql.entities.StatisticsEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceException;
+import javax.sql.DataSource;
+import java.sql.DatabaseMetaData;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -47,6 +53,7 @@ public class PSQLStorage implements Storage {
 
 	@Override
 	public void configure(String configurationName) {
+
 		config = new PSQLStorageConfig();
 		if (configurationName == null)
 			return;
@@ -57,17 +64,26 @@ public class PSQLStorage implements Storage {
 		}
 
 		Map<String, String> map = new HashMap<String, String>();
-		map.put("javax.persistence.jdbc.driver", config.getDriver());
-		map.put("javax.persistence.jdbc.url", config.getUrl());
-		map.put("javax.persistence.jdbc.user", config.getUserName());
-		map.put("javax.persistence.jdbc.password", config.getPassword());
 
-		if (config.getHibernateDialect() != null) {
-			map.put("hibernate.dialect", config.getHibernateDialect());
+		if(config.containsDataSourceJNDIName()) {
+			map.put("hibernate.connection.datasource", config.getDataSourceJNDIName());
 		}
+		else {
+
+			map.put("javax.persistence.jdbc.driver", config.getDriver());
+			map.put("javax.persistence.jdbc.url", config.getUrl());
+			map.put("javax.persistence.jdbc.user", config.getUserName());
+			map.put("javax.persistence.jdbc.password", config.getPassword());
+
+			if (config.getHibernateDialect() != null) {
+				map.put("hibernate.dialect", config.getHibernateDialect());
+			}
+
+		}
+
 		map.put("hibernate.hbm2ddl.auto", "update");
 		map.put("hibernate.show_sql", "true");
-		
+
 		try {
 			factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME, map);
 		} catch (PersistenceException e) {
