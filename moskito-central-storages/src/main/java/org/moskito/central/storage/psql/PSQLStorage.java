@@ -66,10 +66,16 @@ public class PSQLStorage implements Storage {
 		Map<String, String> map = new HashMap<String, String>();
 
 		if(config.containsDataSourceJNDIName()) {
+			log.debug("Configuring connection using data source from JNDI");
+			// Config contains JNDI name of data source to use.
+			// JNDI name has high priority than plain config
 			map.put("hibernate.connection.datasource", config.getDataSourceJNDIName());
 		}
 		else {
 
+			log.debug("JNDI data source name not found. Configuring connection using data from configuration");
+			// No data source JNDI name found in config.
+			// Setting up connection from plain config
 			map.put("javax.persistence.jdbc.driver", config.getDriver());
 			map.put("javax.persistence.jdbc.url", config.getUrl());
 			map.put("javax.persistence.jdbc.user", config.getUserName());

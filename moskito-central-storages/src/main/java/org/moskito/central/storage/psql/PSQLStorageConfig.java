@@ -40,7 +40,8 @@ import org.configureme.annotations.ConfigureMe;
 public class PSQLStorageConfig {
 
 	/**
-	 * JNDI name of data source to store data
+	 * JNDI name of data source to store data.
+	 * Has higher priority than plain json config.
 	 */
 	@Configure
 	private String dataSourceJNDIName = null;
