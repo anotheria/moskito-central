@@ -1,25 +1,22 @@
 package org.moskito.central.storage.psql;
 
 import org.configureme.ConfigurationManager;
-import org.hsqldb.jdbc.JDBCDataSource;
+
 import org.moskito.central.Snapshot;
 import org.moskito.central.storage.Storage;
 import org.moskito.central.storage.psql.entities.JSONStatisticsEntity;
 import org.moskito.central.storage.psql.entities.SnapshotEntity;
 import org.moskito.central.storage.psql.entities.StatisticsEntity;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceException;
-import javax.sql.DataSource;
-import java.sql.DatabaseMetaData;
-import java.sql.SQLException;
+
 import java.util.HashMap;
 import java.util.Map;
 
