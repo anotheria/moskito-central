@@ -1,19 +1,24 @@
 package org.moskito.central.connectors;
 
-import net.anotheria.moskito.core.plugins.AbstractMoskitoPlugin;
-import net.anotheria.moskito.core.snapshot.ProducerSnapshot;
-import net.anotheria.moskito.core.snapshot.SnapshotConsumer;
-import net.anotheria.moskito.core.snapshot.SnapshotRepository;
-import net.anotheria.moskito.core.snapshot.StatSnapshot;
-import net.anotheria.net.util.NetUtils;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
 import org.moskito.central.CentralConstants;
 import org.moskito.central.Snapshot;
 import org.moskito.central.SnapshotMetaData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashMap;
-import java.util.Map;
+import net.anotheria.moskito.core.plugins.AbstractMoskitoPlugin;
+import net.anotheria.moskito.core.snapshot.ProducerSnapshot;
+import net.anotheria.moskito.core.snapshot.SnapshotConsumer;
+import net.anotheria.moskito.core.snapshot.SnapshotRepository;
+import net.anotheria.moskito.core.snapshot.StatSnapshot;
+import net.anotheria.net.util.NetUtils;
 
 /**
  * Parent class for all central connectors. Describes full logic.
@@ -34,6 +39,11 @@ public abstract class AbstractCentralConnector extends AbstractMoskitoPlugin imp
 	private String host;
 
 	/**
+	 * Default intervals.
+	 */
+	private Set<String> defaultIntervals = Collections.emptySet();
+
+	/**
 	 * Logger instance.
 	 */
 	private final static Logger log = LoggerFactory.getLogger(AbstractCentralConnector.class);
@@ -52,6 +62,14 @@ public abstract class AbstractCentralConnector extends AbstractMoskitoPlugin imp
 		host = System.getProperty(CentralConstants.PROP_HOSTNAME, host);
 	}
 
+	public void configure(AbstractCentralConnectorConfig config) {
+		if (config.getSupportedIntervals()==null || config.getSupportedIntervals().length==0){
+			return;
+		}
+
+		defaultIntervals = new HashSet<>(Arrays.asList(config.getSupportedIntervals()));
+	}
+
 	@Override
 	public void initialize() {
 		super.initialize();
@@ -66,6 +84,10 @@ public abstract class AbstractCentralConnector extends AbstractMoskitoPlugin imp
 
 	@Override
 	public void consumeSnapshot(ProducerSnapshot coreSnapshot) {
+		if (!defaultIntervals.isEmpty() && !defaultIntervals.contains(coreSnapshot.getIntervalName())) {
+			return;
+		}
+
 		Snapshot centralSnapshot = makeSnapshot(coreSnapshot);
 		log.debug(this.getClass().getName() + ": \r\n" + centralSnapshot);
 		try {

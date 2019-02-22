@@ -51,6 +51,8 @@ public class RESTConnector extends AbstractCentralConnector {
     public void setConfigurationName(String configurationName) {
         connectorConfig = new RESTConnectorConfig();
         ConfigurationManager.INSTANCE.configureAs(connectorConfig, configurationName);
+        super.configure(connectorConfig);
+
         log.debug("Config: " + connectorConfig);
         client = getClient();
     }

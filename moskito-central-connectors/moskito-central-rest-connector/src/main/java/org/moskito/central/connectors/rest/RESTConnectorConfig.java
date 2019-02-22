@@ -1,6 +1,7 @@
 package org.moskito.central.connectors.rest;
 
 import org.configureme.annotations.ConfigureMe;
+import org.moskito.central.connectors.AbstractCentralConnectorConfig;
 
 /**
  * REST config bean.
@@ -9,22 +10,22 @@ import org.configureme.annotations.ConfigureMe;
  * 
  */
 @ConfigureMe(allfields = true)
-public class RESTConnectorConfig {
+public class RESTConnectorConfig extends AbstractCentralConnectorConfig {
 
-	/**
-	 * HTTP server host.
-	 */
-	private String host;
+    /**
+     * HTTP server host.
+     */
+    private String host;
 
-	/**
-	 * HTTP server port.
-	 */
-	private int port;
+    /**
+     * HTTP server port.
+     */
+    private int port;
 
-	/**
-	 * HTTP server path.
-	 */
-	private String resourcePath;
+    /**
+     * HTTP server path.
+     */
+    private String resourcePath;
 
     /**
      * Is HTTP basic auth enabled.
@@ -61,30 +62,29 @@ public class RESTConnectorConfig {
      */
     private String trustStorePassword;
 
+    public String getHost() {
+        return host;
+    }
 
-	public String getHost() {
-		return host;
-	}
+    public void setHost(String host) {
+        this.host = host;
+    }
 
-	public void setHost(String host) {
-		this.host = host;
-	}
+    public int getPort() {
+        return port;
+    }
 
-	public int getPort() {
-		return port;
-	}
+    public void setPort(int port) {
+        this.port = port;
+    }
 
-	public void setPort(int port) {
-		this.port = port;
-	}
+    public String getResourcePath() {
+        return resourcePath;
+    }
 
-	public String getResourcePath() {
-		return resourcePath;
-	}
-
-	public void setResourcePath(String resourcePath) {
-		this.resourcePath = resourcePath;
-	}
+    public void setResourcePath(String resourcePath) {
+        this.resourcePath = resourcePath;
+    }
 
     public boolean isBasicAuthEnabled() {
         return basicAuthEnabled;
@@ -144,18 +144,19 @@ public class RESTConnectorConfig {
 
     @Override
     public String toString() {
-        return "RESTConnectorConfig{" +
-                "host='" + host + '\'' +
-                ",  port=" + port +
-                ", resourcePath='" + resourcePath + '\'' +
-                ",  basicAuthEnabled=" + basicAuthEnabled +
-                ", login='" + login + '\'' +
-                ", password='" + password + '\'' +
-                ",  trustSelfSigned=" + trustSelfSigned +
-                ",  hostVerificationEnabled=" + hostVerificationEnabled +
-                ", trustStoreFilePath='" + trustStoreFilePath + '\'' +
-                ", trustStorePassword='" + trustStorePassword + '\'' +
-                '}';
+        final StringBuilder sb = new StringBuilder("RESTConnectorConfig{");
+        sb.append("host='").append(host).append('\'');
+        sb.append(", port=").append(port);
+        sb.append(", resourcePath='").append(resourcePath).append('\'');
+        sb.append(", basicAuthEnabled=").append(basicAuthEnabled);
+        sb.append(", login='").append(login).append('\'');
+        sb.append(", password='").append(password).append('\'');
+        sb.append(", trustSelfSigned=").append(trustSelfSigned);
+        sb.append(", hostVerificationEnabled=").append(hostVerificationEnabled);
+        sb.append(", trustStoreFilePath='").append(trustStoreFilePath).append('\'');
+        sb.append(", trustStorePassword='").append(trustStorePassword).append('\'');
+        sb.append(", supportedIntervals='").append(super.getSupportedIntervals()).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
-
 }
