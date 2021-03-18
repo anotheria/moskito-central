@@ -81,9 +81,12 @@ public class FileSystemStorage implements Storage {
         String path = StorageUtils.convertPathPattern(config.getPattern(), target);
 
         FileOutputStream fOut = null;
-        String dirName = path.substring(0, path.lastIndexOf('/'));
-        File f = new File(dirName);
-        f.mkdirs();
+
+        File fileDirectory = new File(path).getParentFile();
+
+        if(fileDirectory != null)
+            fileDirectory.mkdirs();
+
         try {
             fOut = new FileOutputStream(path);
             fOut.write(data);

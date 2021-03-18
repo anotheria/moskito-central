@@ -40,6 +40,13 @@ import org.configureme.annotations.ConfigureMe;
 public class PSQLStorageConfig {
 
 	/**
+	 * JNDI name of data source to store data.
+	 * Has higher priority than plain json config.
+	 */
+	@Configure
+	private String dataSourceJNDIName = null;
+
+	/**
 	 * 
 	 */
 	@Configure
@@ -186,6 +193,18 @@ public class PSQLStorageConfig {
 
 	public void setIncludeExclude(PSQLStorageConfigIncludeExcludeEntry[] includeExclude) {
 		this.includeExclude = includeExclude;
+	}
+
+	public String getDataSourceJNDIName() {
+		return dataSourceJNDIName;
+	}
+
+	public void setDataSourceJNDIName(String dataSourceJNDIName) {
+		this.dataSourceJNDIName = dataSourceJNDIName;
+	}
+
+	public boolean containsDataSourceJNDIName() {
+		return dataSourceJNDIName != null;
 	}
 
 	@Override
