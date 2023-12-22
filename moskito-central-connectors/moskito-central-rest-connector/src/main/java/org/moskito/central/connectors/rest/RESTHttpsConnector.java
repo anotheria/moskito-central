@@ -1,18 +1,21 @@
 package org.moskito.central.connectors.rest;
 
-import com.sun.jersey.api.client.config.ClientConfig;
-import com.sun.jersey.client.urlconnection.HTTPSProperties;
-import org.apache.commons.lang.StringUtils;
+import jakarta.ws.rs.client.Client;
+import jakarta.ws.rs.client.ClientBuilder;
+import jakarta.ws.rs.core.UriBuilder;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.http.conn.ssl.AllowAllHostnameVerifier;
 import org.apache.http.conn.ssl.BrowserCompatHostnameVerifier;
 import org.apache.http.conn.ssl.SSLContextBuilder;
 import org.apache.http.conn.ssl.TrustSelfSignedStrategy;
+import org.glassfish.jersey.client.ClientConfig;
+import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
+import org.glassfish.jersey.jackson.JacksonFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLContext;
-import javax.ws.rs.core.UriBuilder;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -41,16 +44,22 @@ public class RESTHttpsConnector extends RESTConnector {
 
     @Override
     protected ClientConfig getClientConfig() {
-        ClientConfig clientConfig = super.getClientConfig();
-
-        /* Adding HTTPS-specific properties to config */
-        clientConfig.getProperties().put(HTTPSProperties.PROPERTY_HTTPS_PROPERTIES, getHttpsProperties());
-
-        return clientConfig;
+        return super.getClientConfig();
     }
 
-    private HTTPSProperties getHttpsProperties() {
-        return new HTTPSProperties(getHostnameVerifier(), getSslContext());
+    @Override
+    protected Client getClient() {
+        ClientConfig clientConfig = new ClientConfig();
+        clientConfig.register(JacksonFeature.class);
+
+        if (getConnectorConfig().isBasicAuthEnabled()) {
+            HttpAuthenticationFeature feature = HttpAuthenticationFeature.basicBuilder()
+                    .credentials(getConnectorConfig().getLogin(), getConnectorConfig().getPassword())
+                    .build();
+            clientConfig.register(feature);
+        }
+
+        return ClientBuilder.newBuilder().withConfig(clientConfig).sslContext(getSslContext()).hostnameVerifier(getHostnameVerifier()).build();
     }
 
     /**
@@ -82,7 +91,7 @@ public class RESTHttpsConnector extends RESTConnector {
                 storeFile = new File(getConnectorConfig().getTrustStoreFilePath());
             }
 
-            if(storeFile != null && storeFile.exists()) {
+            if (storeFile != null && storeFile.exists()) {
                 storeStream = new FileInputStream(storeFile);
                 KeyStore trustStore = KeyStore.getInstance("JKS");
                 trustStore.load(storeStream, getConnectorConfig().getTrustStorePassword().toCharArray());
@@ -107,7 +116,8 @@ public class RESTHttpsConnector extends RESTConnector {
             if (storeStream != null) {
                 try {
                     storeStream.close();
-                } catch (IOException ignored) {}
+                } catch (IOException ignored) {
+                }
             }
         }
 

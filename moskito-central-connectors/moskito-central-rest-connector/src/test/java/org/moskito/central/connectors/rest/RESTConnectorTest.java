@@ -1,6 +1,8 @@
 package org.moskito.central.connectors.rest;
 
-import com.sun.jersey.test.framework.JerseyTest;
+import jakarta.ws.rs.core.Application;
+import org.glassfish.jersey.server.ResourceConfig;
+import org.glassfish.jersey.test.JerseyTest;
 import org.junit.Test;
 import org.moskito.central.Snapshot;
 import org.moskito.central.SnapshotMetaData;
@@ -32,14 +34,13 @@ public class RESTConnectorTest extends JerseyTest {
 
 
     public RESTConnectorTest() {
-        super("org.moskito.central.connectors.rest", "org.codehaus.jackson.jaxrs");
+        super();
     }
-
-
     @Override
-    protected int getPort(int defaultPort) {
-        return super.getPort(9988);
+    protected Application configure() {
+        return new ResourceConfig().packages("org.moskito.central.connectors.rest;org.codehaus.jackson.jaxrs");
     }
+
 
     @Test
     public void testAddSnapshot() throws InterruptedException {

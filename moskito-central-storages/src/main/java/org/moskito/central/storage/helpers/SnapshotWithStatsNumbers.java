@@ -3,8 +3,8 @@ package org.moskito.central.storage.helpers;
 import org.moskito.central.Snapshot;
 import org.moskito.central.SnapshotMetaData;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;

@@ -1,21 +1,21 @@
 package org.moskito.central.connectors.rest;
 
-import com.sun.jersey.api.core.ResourceConfig;
-import com.sun.jersey.core.util.Base64;
-import com.sun.jersey.spi.container.ContainerRequest;
-import com.sun.jersey.spi.container.ContainerRequestFilter;
-import com.sun.jersey.test.framework.AppDescriptor;
-import com.sun.jersey.test.framework.JerseyTest;
-import com.sun.jersey.test.framework.WebAppDescriptor;
+import jakarta.ws.rs.WebApplicationException;
+import jakarta.ws.rs.container.ContainerRequestContext;
+import jakarta.ws.rs.container.ContainerRequestFilter;
+import jakarta.ws.rs.core.Application;
+import jakarta.ws.rs.core.Context;
+import jakarta.ws.rs.core.SecurityContext;
+import jakarta.ws.rs.core.UriInfo;
+import org.glassfish.jersey.server.ContainerRequest;
+import org.glassfish.jersey.server.ResourceConfig;
+import org.glassfish.jersey.test.JerseyTest;
 import org.junit.Test;
 import org.moskito.central.Snapshot;
 import org.moskito.central.SnapshotMetaData;
 
-import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.SecurityContext;
-import javax.ws.rs.core.UriInfo;
 import java.security.Principal;
+import java.util.Base64;
 import java.util.HashMap;
 
 /**
@@ -43,14 +43,8 @@ public class RESTConnectorHttpBasicAuthTest extends JerseyTest {
 
 
     @Override
-    protected AppDescriptor configure() {
-        return new WebAppDescriptor.Builder("org.moskito.central.connectors.rest;org.codehaus.jackson.jaxrs")
-                .initParam(ResourceConfig.PROPERTY_CONTAINER_REQUEST_FILTERS, HttpBasicAuthFilter.class.getName()).build();
-    }
-
-    @Override
-    protected int getPort(int defaultPort) {
-        return super.getPort(9988);
+    protected Application configure() {
+        return new ResourceConfig().packages("org.moskito.central.connectors.rest;org.codehaus.jackson.jaxrs").property("jakarta.ws.rs.container.ContainerRequestFilter", HttpBasicAuthFilter.class.getName());
     }
 
     @Test
@@ -81,7 +75,7 @@ public class RESTConnectorHttpBasicAuthTest extends JerseyTest {
     }
 
     /**
-     * HTTP Basic Authentication request filter for {@link com.sun.jersey.test.framework.spi.container.TestContainer}.
+     * HTTP Basic Authentication request filter for {@link org.glassfish.jersey.test.spi.TestContainer}.
      * Simulates enabled HTTP basic authentication on server's side.
      */
     public static class HttpBasicAuthFilter implements ContainerRequestFilter {
@@ -104,15 +98,14 @@ public class RESTConnectorHttpBasicAuthTest extends JerseyTest {
 
 
         @Override
-        public ContainerRequest filter(ContainerRequest request) {
+        public void filter(ContainerRequestContext request) {
             User user = authenticate(request);
             request.setSecurityContext(new HttpBasicAuthContext(user));
-            return request;
         }
 
-        private User authenticate(ContainerRequest request) {
+        private User authenticate(ContainerRequestContext request) {
             // Extract authentication credentials
-            String authentication = request.getHeaderValue(ContainerRequest.AUTHORIZATION);
+            String authentication = request.getHeaderString(ContainerRequest.AUTHORIZATION);
             if (authentication == null) {
                 throw new WebApplicationException(401);
                 // Authentication credentials are required
@@ -123,7 +116,7 @@ public class RESTConnectorHttpBasicAuthTest extends JerseyTest {
                 // Only HTTP Basic authentication is supported
             }
             authentication = authentication.substring("Basic ".length());
-            String[] values = new String(Base64.base64Decode(authentication)).split(":");
+            String[] values = new String(Base64.getDecoder().decode(authentication)).split(":");
             if (values.length < 2) {
                 throw new WebApplicationException(401);
                 // Invalid syntax for username and password

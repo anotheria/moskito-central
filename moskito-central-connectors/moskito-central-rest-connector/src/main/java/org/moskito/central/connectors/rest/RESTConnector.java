@@ -1,20 +1,20 @@
 package org.moskito.central.connectors.rest;
 
-import com.sun.jersey.api.client.Client;
-import com.sun.jersey.api.client.WebResource;
-import com.sun.jersey.api.client.config.ClientConfig;
-import com.sun.jersey.api.client.config.DefaultClientConfig;
-import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
-import com.sun.jersey.api.json.JSONConfiguration;
-import org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider;
+import jakarta.ws.rs.client.Client;
+import jakarta.ws.rs.client.ClientBuilder;
+import jakarta.ws.rs.client.Entity;
+import jakarta.ws.rs.client.WebTarget;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.UriBuilder;
 import org.configureme.ConfigurationManager;
+import org.glassfish.jersey.client.ClientConfig;
+import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
+import org.glassfish.jersey.jackson.JacksonFeature;
 import org.moskito.central.Snapshot;
 import org.moskito.central.connectors.AbstractCentralConnector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.UriBuilder;
 import java.net.URI;
 
 /**
@@ -59,24 +59,27 @@ public class RESTConnector extends AbstractCentralConnector {
 
     @Override
     protected void sendData(Snapshot snapshot) {
-        WebResource resource = client.resource(getBaseURI());
-        resource.accept(MediaType.APPLICATION_JSON).type(MediaType.APPLICATION_JSON).post(snapshot);
+        WebTarget webTarget = client.target(getBaseURI());
+        webTarget.request(MediaType.APPLICATION_JSON).post(Entity.json(snapshot));
     }
 
-    private Client getClient() {
-        Client client = Client.create(getClientConfig());
+    protected Client getClient() {
+        ClientConfig clientConfig = new ClientConfig();
+        clientConfig.register(JacksonFeature.class);
+
         if (connectorConfig.isBasicAuthEnabled()) {
-            /* adding HTTP basic auth header to request */
-            client.addFilter(new HTTPBasicAuthFilter(connectorConfig.getLogin(), connectorConfig.getPassword()));
+            HttpAuthenticationFeature feature = HttpAuthenticationFeature.basicBuilder()
+                    .credentials(connectorConfig.getLogin(), connectorConfig.getPassword())
+                    .build();
+            clientConfig.register(feature);
         }
 
-        return client;
+        return ClientBuilder.newClient(clientConfig);
     }
 
     protected ClientConfig getClientConfig() {
-        ClientConfig clientConfig = new DefaultClientConfig();
-        clientConfig.getClasses().add(JacksonJaxbJsonProvider.class);
-        clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
+        ClientConfig clientConfig = new ClientConfig();
+        clientConfig.register(JacksonFeature.class);
         return clientConfig;
     }
 

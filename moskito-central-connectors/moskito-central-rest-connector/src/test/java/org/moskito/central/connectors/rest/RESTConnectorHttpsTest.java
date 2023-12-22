@@ -1,14 +1,13 @@
 package org.moskito.central.connectors.rest;
 
-import com.sun.jersey.api.client.ClientHandlerException;
-import com.sun.jersey.api.container.grizzly2.GrizzlyServerFactory;
-import com.sun.jersey.api.core.PackagesResourceConfig;
-import com.sun.jersey.spi.container.servlet.ServletContainer;
+import jakarta.ws.rs.core.UriBuilder;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.grizzly.servlet.ServletRegistration;
 import org.glassfish.grizzly.servlet.WebappContext;
 import org.glassfish.grizzly.ssl.SSLContextConfigurator;
 import org.glassfish.grizzly.ssl.SSLEngineConfigurator;
+import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
+import org.glassfish.jersey.servlet.ServletContainer;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
@@ -17,7 +16,6 @@ import org.moskito.central.Snapshot;
 import org.moskito.central.SnapshotMetaData;
 
 import javax.net.ssl.SSLContext;
-import javax.ws.rs.core.UriBuilder;
 import java.net.URI;
 import java.util.HashMap;
 
@@ -70,7 +68,7 @@ public class RESTConnectorHttpsTest {
         public static void start() {
             WebappContext webappContext = new WebappContext("TestContext");
             ServletRegistration registration = webappContext.addServlet("ServletContainer", ServletContainer.class);
-            registration.setInitParameter(PackagesResourceConfig.PROPERTY_PACKAGES, "org.moskito.central.connectors.rest;org.codehaus.jackson.jaxrs");
+            registration.setInitParameter("jersey.config.server.provider.packages", "org.moskito.central.connectors.rest;org.codehaus.jackson.jaxrs");
             registration.addMapping("/*");
 
             SSLContextConfigurator sslConfigurator = new SSLContextConfigurator();
@@ -79,7 +77,7 @@ public class RESTConnectorHttpsTest {
             SSLContext sslContext = sslConfigurator.createSSLContext();
 
             try {
-                server = GrizzlyServerFactory.createHttpServer(
+                server = GrizzlyHttpServerFactory.createHttpServer(
                         getBaseURI(),
                         null,
                         true,
@@ -126,7 +124,7 @@ public class RESTConnectorHttpsTest {
         addSnapshot();
     }
 
-    @Test(expected = ClientHandlerException.class)
+    @Test(expected = Exception.class)
     public void testHostVerification() {
         connector.getConfig().setHostVerificationEnabled(true);
         addSnapshot();
@@ -139,7 +137,7 @@ public class RESTConnectorHttpsTest {
         addSnapshot();
     }
 
-    @Test(expected = ClientHandlerException.class)
+    @Test(expected = Exception.class)
     public void testSelfSignedWithHostVerification() {
         connector.getConfig().setTrustStoreFilePath(null);
         connector.getConfig().setTrustSelfSigned(true);
